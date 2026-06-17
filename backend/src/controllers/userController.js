@@ -5,16 +5,19 @@ exports.updateProfile = async (req, res) => {
   try {
     const { fullName, school, year, major, bio, specializations, gpa, minor } = req.body;
     
-    const updatedUser = await db.updateUser(req.user.id, {
-      fullName: fullName || '',
-      school: school || '',
-      year: year || '',
-      major: major || '',
-      bio: bio || '',
-      specializations: Array.isArray(specializations) ? specializations : [],
-      gpa: gpa || '',
-      minor: minor || '',
-    });
+    const updateData = {};
+    if (fullName !== undefined) updateData.fullName = fullName;
+    if (school !== undefined) updateData.school = school;
+    if (year !== undefined) updateData.year = year;
+    if (major !== undefined) updateData.major = major;
+    if (bio !== undefined) updateData.bio = bio;
+    if (specializations !== undefined) {
+      updateData.specializations = Array.isArray(specializations) ? specializations : [];
+    }
+    if (gpa !== undefined) updateData.gpa = gpa;
+    if (minor !== undefined) updateData.minor = minor;
+
+    const updatedUser = await db.updateUser(req.user.id, updateData);
 
     const { passwordHash: _, ...userWithoutHash } = updatedUser;
     res.json(userWithoutHash);
