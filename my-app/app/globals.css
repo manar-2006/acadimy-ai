@@ -1,0 +1,317 @@
+@import "tailwindcss";
+
+/* =========================================================
+   EduSphere AI – Global Design Token System
+   Academic Tech Color Palette (Material You inspired)
+   ========================================================= */
+
+:root {
+  /* Core Brand Colors */
+  --primary: #002045;
+  --primary-container: #1a365d;
+  --on-primary: #ffffff;
+  --secondary: #006b5f;
+  --secondary-container: #d1fae5;
+  --secondary-fixed: #62fae3;
+  --secondary-fixed-dim: #3cddc7;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #003d37;
+  --on-secondary-fixed: #007165;
+  --tertiary: #09007b;
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error: #ffffff;
+
+  /* Surface System */
+  --background: #f7f9fb;
+  --surface: #f7f9fb;
+  --surface-bright: #ffffff;
+  --surface-dim: #c4c6cf;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f4f6;
+  --surface-container: #eceef0;
+  --surface-container-high: #e6e8ea;
+  --surface-container-highest: #e0e3e5;
+
+  /* On-Surface */
+  --on-surface: #191c1e;
+  --on-surface-variant: #43474e;
+  --outline: #74777f;
+  --outline-variant: #c4c6cf;
+  --foreground: #191c1e;
+
+  /* Accents */
+  --primary-fixed: #d6e3ff;
+  --success: #006b5f;
+  --warning: #f59e0b;
+}
+
+/* Tailwind CSS var mappings */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =========================================================
+   Base Styles
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--on-surface);
+  font-family: 'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   Typography Utility Classes
+   ========================================================= */
+.font-sora { font-family: 'Sora', sans-serif; }
+
+.font-headline-xl { font-family: 'Sora', sans-serif; font-size: 40px; line-height: 48px; letter-spacing: -0.02em; font-weight: 700; }
+.font-headline-lg { font-family: 'Sora', sans-serif; font-size: 32px; line-height: 40px; letter-spacing: -0.01em; font-weight: 600; }
+.font-headline-md { font-family: 'Sora', sans-serif; font-size: 24px; line-height: 32px; font-weight: 600; }
+.font-headline-sm { font-family: 'Sora', sans-serif; font-size: 20px; line-height: 28px; font-weight: 600; }
+.font-body-lg { font-family: 'Inter', sans-serif; font-size: 18px; line-height: 30px; }
+.font-body-md { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 26px; }
+.font-body-sm { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; }
+.font-label-md { font-family: 'Inter', sans-serif; font-size: 12px; line-height: 16px; letter-spacing: 0.05em; font-weight: 600; }
+
+.text-headline-xl { font-family: 'Sora', sans-serif; font-size: 40px; line-height: 48px; }
+.text-headline-lg { font-family: 'Sora', sans-serif; font-size: 32px; line-height: 40px; }
+.text-headline-md { font-family: 'Sora', sans-serif; font-size: 24px; line-height: 32px; }
+.text-headline-sm { font-family: 'Sora', sans-serif; font-size: 20px; line-height: 28px; }
+.text-body-lg { font-size: 18px; line-height: 30px; }
+.text-body-md { font-size: 16px; line-height: 26px; }
+.text-body-sm { font-size: 14px; line-height: 22px; }
+.text-label-md { font-size: 12px; line-height: 16px; }
+
+/* =========================================================
+   Semantic Color Utility Classes
+   ========================================================= */
+.bg-background { background-color: var(--background); }
+.bg-surface { background-color: var(--surface); }
+.bg-surface-bright { background-color: var(--surface-bright); }
+.bg-surface-container-lowest { background-color: var(--surface-container-lowest); }
+.bg-surface-container-low { background-color: var(--surface-container-low); }
+.bg-surface-container { background-color: var(--surface-container); }
+.bg-surface-container-high { background-color: var(--surface-container-high); }
+.bg-surface-container-highest { background-color: var(--surface-container-highest); }
+.bg-surface-variant { background-color: var(--surface-container-high); }
+.bg-primary { background-color: var(--primary); }
+.bg-primary-container { background-color: var(--primary-container); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-secondary-container { background-color: var(--secondary-container); }
+.bg-error { background-color: var(--error); }
+.bg-error-container { background-color: var(--error-container); }
+
+.text-primary { color: var(--primary); }
+.text-on-primary { color: var(--on-primary); }
+.text-primary-fixed { color: var(--primary-fixed); }
+.text-secondary { color: var(--secondary); }
+.text-on-secondary { color: var(--on-secondary); }
+.text-secondary-fixed { color: var(--secondary-fixed); }
+.text-secondary-fixed-dim { color: var(--secondary-fixed-dim); }
+.text-on-secondary-fixed { color: var(--on-secondary-fixed); }
+.text-on-secondary-container { color: var(--on-secondary-container); }
+.text-on-surface { color: var(--on-surface); }
+.text-on-surface-variant { color: var(--on-surface-variant); }
+.text-outline { color: var(--outline); }
+.text-surface-container-lowest { color: var(--surface-container-lowest); }
+.text-surface-dim { color: var(--surface-dim); }
+.text-on-primary { color: var(--on-primary); }
+
+.border-outline { border-color: var(--outline); }
+.border-outline-variant { border-color: var(--outline-variant); }
+.border-primary { border-color: var(--primary); }
+.border-secondary { border-color: var(--secondary); }
+.border-secondary-container { border-color: var(--secondary-container); }
+.border-secondary-fixed-dim { border-color: var(--secondary-fixed-dim); }
+
+.focus\:ring-secondary:focus { --tw-ring-color: var(--secondary); }
+.focus\:border-secondary:focus { border-color: var(--secondary); }
+
+/* =========================================================
+   Layout Spacing Utilities
+   ========================================================= */
+.px-margin-mobile { padding-left: 16px; padding-right: 16px; }
+.px-margin-desktop { padding-left: 48px; padding-right: 48px; }
+.p-margin-mobile { padding: 16px; }
+.p-margin-desktop { padding: 48px; }
+.py-stack-lg { padding-top: 48px; padding-bottom: 48px; }
+.py-stack-sm { padding-top: 12px; padding-bottom: 12px; }
+.pt-stack-md { padding-top: 24px; }
+.pt-base { padding-top: 8px; }
+.mb-stack-lg { margin-bottom: 48px; }
+.mb-stack-md { margin-bottom: 24px; }
+.max-w-container-max { max-width: 1280px; }
+.gap-stack-md { gap: 24px; }
+.gap-gutter { gap: 24px; }
+.px-gutter { padding-left: 24px; padding-right: 24px; }
+.p-gutter { padding: 24px; }
+.space-y-gutter > :not([hidden]) ~ :not([hidden]) { margin-top: 24px; }
+.space-y-stack-md > :not([hidden]) ~ :not([hidden]) { margin-top: 24px; }
+.space-y-stack-sm > :not([hidden]) ~ :not([hidden]) { margin-top: 12px; }
+.left-margin-desktop { left: 48px; }
+
+/* =========================================================
+   Component Utilities
+   ========================================================= */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 107, 95, 0.1);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+  user-select: none;
+}
+
+/* Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 10px; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* =========================================================
+   Animations
+   ========================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animation-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+.animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+
+/* Custom gradients and glass effects */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 107, 95, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-fill {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* =========================================================
+   Premium Animations & Effects
+   ========================================================= */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-subtle { animation: pulse-subtle 2s ease-in-out infinite; }
+.animate-fade-in-scale { animation: fadeInScale 0.4s ease-out forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.35s ease-out forwards; }
+
+/* Shimmer skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, #e0e3e5 0%, #eceef0 50%, #e0e3e5 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Hero mesh background */
+.hero-mesh {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 30px,
+    rgba(255,255,255,0.03) 30px,
+    rgba(255,255,255,0.03) 31px
+  );
+}
+
+/* Dot grid pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Gradient stat card */
+.stat-card-primary { background: linear-gradient(135deg, #002045, #1a365d); }
+.stat-card-secondary { background: linear-gradient(135deg, #006b5f, #007165); }
+.stat-card-tertiary { background: linear-gradient(135deg, #09007b, #3730a3); }
+.stat-card-error { background: linear-gradient(135deg, #ba1a1a, #c62828); }
+
+/* Glass card premium */
+.glass-card-premium {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 24px rgba(0, 32, 69, 0.06);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0, 32, 69, 0.12);
+}
+
+/* Brand gradient text */
+.text-brand-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Teal glow effect */
+.teal-glow {
+  box-shadow: 0 0 0 1px rgba(0,107,95,0.15), 0 4px 24px rgba(0,107,95,0.12);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--outline); }
+
