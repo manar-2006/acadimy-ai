@@ -64,33 +64,93 @@ const SEED_STUDENTS = [
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-async function ensureSeeded(userId) {
-  const existing = await db.getCoursesByTeacherId(userId);
-  if (existing.length === 0) {
-    for (const course of SEED_COURSES) {
-      const saved = await db.saveCourse({ ...course, teacherId: userId });
-      // Seed assignments for this course
+async function ensureGlobalSeeded() {
+  const users = await db.getUsers();
+  let teachers = users.filter(u => u.role === 'teacher');
+  
+  if (teachers.length === 0) {
+    const bcrypt = require('bcryptjs');
+    const defaultTeacherHash = await bcrypt.hash('password123', 10);
+    const newTeacher = await db.saveUser({
+      email: 'drmanar@gmail.com',
+      passwordHash: defaultTeacherHash,
+      fullName: 'Dr. Manar Nadji',
+      school: 'École Supérieure en Sciences et Technologies de l\'Informatique et du Numérique (ESTIN)',
+      year: 'Professor',
+      major: 'Computer Science',
+      role: 'teacher',
+      bio: 'Professor of Computer Science & AI researcher.',
+      specializations: ['Artificial Intelligence', 'Operating Systems', 'Machine Learning']
+    });
+    teachers = [newTeacher];
+  }
+
+  const allCourses = await db.getAllCourses();
+  if (allCourses.length === 0) {
+    for (let i = 0; i < SEED_COURSES.length; i++) {
+      const course = SEED_COURSES[i];
+      let teacher = teachers[i % teachers.length];
+      
+      if (course.code === 'CS-402') {
+        const found = teachers.find(t => t.email === 'drmanar@gmail.com');
+        if (found) teacher = found;
+      } else if (course.code === 'CS-520') {
+        const found = teachers.find(t => t.email === 'manar5@gmail.com');
+        if (found) teacher = found;
+      } else if (course.code === 'CS-301') {
+        const found = teachers.find(t => t.email === 'manar9@gmail.com');
+        if (found) teacher = found;
+      } else if (course.code === 'CS-415') {
+        const found = teachers.find(t => t.email === 'manar456@gmail.com');
+        if (found) teacher = found;
+      }
+
+      const saved = await db.saveCourse({ ...course, teacherId: teacher.id });
+
       const matchingAssignments = SEED_ASSIGNMENTS.filter(a => a.courseCode === course.code);
       for (const assignment of matchingAssignments) {
-        await db.saveAssignment({ ...assignment, courseId: saved.id, teacherId: userId });
+        await db.saveAssignment({ ...assignment, courseId: saved.id, teacherId: teacher.id });
       }
-      // Seed students for this course
+
       const matchingStudents = SEED_STUDENTS.filter(s => s.courseCode === course.code);
       for (const student of matchingStudents) {
-        await db.saveStudentRecord({ ...student, courseId: saved.id, teacherId: userId });
+        await db.saveStudentRecord({ ...student, courseId: saved.id, teacherId: teacher.id });
       }
     }
-    return db.getCoursesByTeacherId(userId);
   }
-  return existing;
 }
 
 // ─── Controller exports ──────────────────────────────────────────────────────
 
 exports.getCourses = async (req, res) => {
   try {
-    const courses = await ensureSeeded(req.user.id);
-    res.json(courses);
+    await ensureGlobalSeeded();
+    
+    const user = await db.getUserById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (user.role === 'teacher') {
+      const courses = await db.getCoursesByTeacherId(req.user.id);
+      res.json(courses);
+    } else {
+      const studentRecords = await db.getStudentRecordsByStudentId(req.user.id);
+      const enrolledCourseIds = studentRecords.map(r => r.courseId);
+      
+      const allCourses = await db.getAllCourses();
+      const enrolledCourses = allCourses.filter(c => enrolledCourseIds.includes(c.id));
+      
+      const resolved = [];
+      for (const course of enrolledCourses) {
+        const teacher = await db.getUserById(course.teacherId);
+        resolved.push({
+          ...course,
+          teacherName: teacher ? teacher.fullName : 'Assistant Professor',
+          teacherEmail: teacher ? teacher.email : '',
+          progress: studentRecords.find(r => r.courseId === course.id)?.progress || 65
+        });
+      }
+      res.json(resolved);
+    }
   } catch (error) {
     console.error('Get courses error:', error);
     res.status(500).json({ message: error.message || 'Internal server error' });
@@ -101,10 +161,118 @@ exports.getCourseById = async (req, res) => {
   try {
     const course = await db.getCourseById(req.params.id);
     if (!course) return res.status(404).json({ message: 'Course not found' });
-    if (course.teacherId !== req.user.id) return res.status(403).json({ message: 'Forbidden' });
+    
+    const user = await db.getUserById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (user.role === 'teacher') {
+      if (course.teacherId !== req.user.id) return res.status(403).json({ message: 'Forbidden' });
+    } else {
+      const records = await db.getStudentRecordsByStudentId(req.user.id);
+      const isEnrolled = records.some(r => r.courseId === course.id);
+      if (!isEnrolled) return res.status(403).json({ message: 'Not enrolled in this course' });
+    }
+    
     res.json(course);
   } catch (error) {
     console.error('Get course by ID error:', error);
+    res.status(500).json({ message: error.message || 'Internal server error' });
+  }
+};
+
+exports.getAllCourses = async (req, res) => {
+  try {
+    await ensureGlobalSeeded();
+    
+    const allCourses = await db.getAllCourses();
+    const resolved = [];
+    
+    for (const course of allCourses) {
+      const teacher = await db.getUserById(course.teacherId);
+      resolved.push({
+        ...course,
+        teacher: teacher ? {
+          id: teacher.id,
+          fullName: teacher.fullName,
+          email: teacher.email,
+          school: teacher.school,
+          bio: teacher.bio,
+          specializations: teacher.specializations
+        } : null
+      });
+    }
+    res.json(resolved);
+  } catch (error) {
+    console.error('Get all courses error:', error);
+    res.status(500).json({ message: error.message || 'Internal server error' });
+  }
+};
+
+exports.enrollCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const course = await db.getCourseById(courseId);
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+
+    const student = await db.getUserById(req.user.id);
+    if (!student) return res.status(404).json({ message: 'Student user not found' });
+
+    const records = await db.getStudentRecordsByStudentId(student.id);
+    const isEnrolled = records.some(r => r.courseId === courseId);
+    if (isEnrolled) {
+      return res.status(400).json({ message: 'You are already enrolled in this course' });
+    }
+
+    await db.saveStudentRecord({
+      name: student.fullName || 'Student User',
+      email: student.email,
+      courseCode: course.code,
+      courseId: course.id,
+      teacherId: course.teacherId,
+      studentId: student.id,
+      quizAvg: 85,
+      attendance: 100,
+      riskLevel: 'High Achiever',
+      lastActive: 'Just now',
+      progress: 65 // Starting mock progress
+    });
+
+    const currentStudents = course.students || 0;
+    await db.updateCourse(course.id, {
+      students: currentStudents + 1
+    });
+
+    await db.saveNotification({
+      userId: course.teacherId,
+      title: 'New Student Enrollment',
+      message: `${student.fullName || student.email} has enrolled in your course: ${course.name}.`,
+      type: 'students',
+      priority: 'normal',
+      icon: 'person_add',
+      iconColor: '#006b5f',
+      iconBg: '#d1fae5',
+      actions: [
+        {
+          label: 'View Students',
+          primary: true
+        }
+      ]
+    });
+
+    await db.saveNotification({
+      userId: student.id,
+      title: 'Course Enrolled Successfully',
+      message: `You are now enrolled in ${course.name}. Welcome!`,
+      type: 'system',
+      priority: 'normal',
+      icon: 'check_circle',
+      iconColor: '#006b5f',
+      iconBg: '#d1fae5'
+    });
+
+    res.json({ message: 'Enrolled successfully', courseId });
+  } catch (error) {
+    console.error('Enroll course error:', error);
     res.status(500).json({ message: error.message || 'Internal server error' });
   }
 };
@@ -215,15 +383,110 @@ exports.getSubmissions = async (req, res) => {
   }
 };
 
+exports.submitAssignment = async (req, res) => {
+  try {
+    const { courseId, assignmentId } = req.params;
+    const { content } = req.body;
+
+    if (!content) {
+      return res.status(400).json({ message: 'Submission content is required' });
+    }
+
+    const student = await db.getUserById(req.user.id);
+    if (!student) {
+      return res.status(404).json({ message: 'Student user not found' });
+    }
+
+    const course = await db.getCourseById(courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    const submission = await db.saveSubmission({
+      courseId,
+      assignmentId,
+      studentId: req.user.id,
+      studentName: student.fullName || student.email,
+      studentEmail: student.email,
+      content,
+      status: 'submitted'
+    });
+
+    // Create notification for the teacher
+    await db.saveNotification({
+      userId: course.teacherId,
+      title: 'New Assignment Submission',
+      message: `${student.fullName || student.email} submitted their assignment for course ${course.code || course.name}.`,
+      icon: 'assignment_turned_in',
+      iconBg: '#e0f5f2'
+    });
+
+    res.status(201).json(submission);
+  } catch (error) {
+    console.error('Submit assignment error:', error);
+    res.status(500).json({ message: error.message || 'Internal server error' });
+  }
+};
+
 exports.gradeSubmission = async (req, res) => {
   try {
     const { grade, feedback } = req.body;
     if (grade === undefined) return res.status(400).json({ message: 'Grade is required' });
 
     const updated = await db.gradeSubmission(req.params.submissionId, { grade, feedback: feedback || '' });
+
+    // Notify the student that their work has been graded
+    try {
+      const course = await db.getCourseById(req.params.courseId);
+      if (updated.studentId && course) {
+        await db.saveNotification({
+          userId: updated.studentId,
+          title: '📝 Assignment Graded',
+          message: `Your submission for "${course.code || course.name}" was graded. Score: ${grade} pts.${feedback ? ` Feedback: "${feedback}"` : ''}`,
+          icon: 'grade',
+          iconBg: '#d1fae5'
+        });
+      }
+    } catch (notifErr) {
+      console.warn('Could not send grade notification:', notifErr.message);
+    }
+
     res.json(updated);
   } catch (error) {
     console.error('Grade submission error:', error);
+    res.status(500).json({ message: error.message || 'Internal server error' });
+  }
+};
+
+exports.getStudentAssignments = async (req, res) => {
+  try {
+    const studentRecords = await db.getStudentRecordsByStudentId(req.user.id);
+    const enrolledCourseIds = studentRecords.map(r => r.courseId);
+    
+    const allAssignments = [];
+    for (const courseId of enrolledCourseIds) {
+      const course = await db.getCourseById(courseId);
+      if (course) {
+        const assignments = await db.getAssignmentsByCourseId(courseId);
+        // check if student has a submission for each assignment
+        for (const a of assignments) {
+          const submissions = await db.getSubmissionsByAssignmentId(a.id);
+          const studentSub = submissions.find(s => s.studentId === req.user.id);
+          allAssignments.push({
+            ...a,
+            courseName: course.name,
+            courseCode: course.code,
+            submitted: !!studentSub,
+            grade: studentSub ? studentSub.grade : null,
+            status: studentSub ? studentSub.status : 'pending',
+            feedback: studentSub ? studentSub.feedback : null
+          });
+        }
+      }
+    }
+    res.json(allAssignments);
+  } catch (error) {
+    console.error('Get student assignments error:', error);
     res.status(500).json({ message: error.message || 'Internal server error' });
   }
 };

@@ -4,21 +4,36 @@
       "id": "1780612237912",
       "createdAt": "2026-06-04T22:30:37.912Z",
       "email": "m_nadji@estin.dz",
-      "passwordHash": "$2a$10$cYEa2WvAA60H0gmbKopacOZhdCfGRHGpLS6jjOTWTcAqIg84FnkuG",
-      "fullName": "wvgfb",
-      "school": "cambridge",
-      "year": "3",
-      "major": "wv bg"
+      "passwordHash": "$2a$10$1c5C/Drzs46/skrnd4Y.f.NY4AGQSRth44DjYqlcVYLMaTqYpST2C",
+      "fullName": "manar",
+      "school": "University of Cambridge",
+      "year": "Year 3",
+      "major": "wv bg",
+      "updatedAt": "2026-06-28T21:45:47.139Z",
+      "bio": "B.S. Computer Science & Artificial Intelligence",
+      "specializations": [
+        "Neural Networks",
+        "Python",
+        "Data Science",
+        "LLM Architecture",
+        "React.js",
+        "Project Management",
+        "Cloud Architecture",
+        "Ethics in AI"
+      ],
+      "gpa": "3.92 / 4.0",
+      "minor": "Cognitive Psychology"
     },
     {
       "id": "1780941459746",
       "createdAt": "2026-06-08T17:57:39.746Z",
       "email": "testuser@university.edu",
-      "passwordHash": "$2a$10$dJy4GxE9N9/Nq/rqhDSTU..R5XzC/Kblse0yUHHGOhwK6IHPOeAm.",
+      "passwordHash": "$2a$10$./qfs9UACpoO9zA9/TOgWe8JehOPwFtltHS.FkKQ2fX9E.WKvE3pe",
       "fullName": "manar",
       "school": "cambridge",
       "year": "3",
-      "major": "cs"
+      "major": "cs",
+      "updatedAt": "2026-06-29T14:47:30.310Z"
     },
     {
       "id": "1781360710434",
@@ -285,6 +300,184 @@
       "role": "teacher",
       "bio": "",
       "specializations": []
+    },
+    {
+      "id": "1781786042063",
+      "createdAt": "2026-06-18T12:34:02.063Z",
+      "email": "manar10@gmail.com",
+      "passwordHash": "$2a$10$iGO4W8DYvfDzQQYveSqOAeszMJF1GDjYGhw.QGEA6AUI85vw5clI6",
+      "fullName": "raounak tartil nadji",
+      "school": "nour mouhammed taher",
+      "year": "Year 2",
+      "major": "english",
+      "role": "student",
+      "bio": "english ",
+      "specializations": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "AI Ethics"
+      ],
+      "updatedAt": "2026-06-18T12:40:30.488Z",
+      "gpa": "19.62/20",
+      "minor": "student "
+    },
+    {
+      "id": "1781787538772",
+      "createdAt": "2026-06-18T12:58:58.772Z",
+      "email": "manar456@gmail.com",
+      "passwordHash": "$2a$10$fSyFnCxvrqcA2VYOTg4ECuO4/bKV3Q2wTc3/n20J8IajjEF5iJnB2",
+      "fullName": "dr manar nadji",
+      "school": "stanford",
+      "year": "Associate Professor",
+      "major": "informatic",
+      "role": "teacher",
+      "bio": "Passionate educator and researcher.",
+      "specializations": [],
+      "updatedAt": "2026-06-18T13:00:26.460Z"
+    },
+    {
+      "id": "1781963171871",
+      "createdAt": "2026-06-20T13:46:11.871Z",
+      "email": "manar2006@gmail.com",
+      "passwordHash": "$2a$10$dMTuC7UylgN5BWhl5Y1he.VOl1IkEKBk2fK25PkPuq.9g0YeeysSC",
+      "fullName": "manar",
+      "school": "École Supérieure en Sciences et Technologies de l'Informatique et du Numérique (ESTIN)",
+      "year": "Year 3",
+      "major": "info",
+      "role": "student",
+      "bio": "Focused on Artificial Intelligence, Machine Learning, Data Science. AI Companion tone set to academic.",
+      "specializations": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Data Science",
+        "Software Engineering",
+        "AI Ethics"
+      ],
+      "updatedAt": "2026-06-20T13:48:40.311Z",
+      "gpa": "13/20",
+      "minor": "Cognitive Psychology"
+    },
+    {
+      "id": "1781964801916",
+      "createdAt": "2026-06-20T14:13:21.916Z",
+      "email": "drmanar@gmail.com",
+      "passwordHash": "$2a$10$XEhHkQgm8DuDzNDmTU8JpOLHRIzR1OUrxkiVkfztFHniCiUrXtCmi",
+      "fullName": "dr manar nadji",
+      "school": "estin_bejaia",
+      "year": "Professor",
+      "major": "informatic",
+      "role": "teacher",
+      "bio": "nkvcgf",
+      "specializations": [],
+      "updatedAt": "2026-06-20T14:14:31.912Z"
+    },
+    {
+      "id": "1782234082788",
+      "createdAt": "2026-06-23T17:01:22.788Z",
+      "email": "thelightofworld22@gmil.com",
+      "passwordHash": "$2a$10$aIL1ITBWQeMBNYc24mCxae/m49yqbnAyiKt.2Mn7ZEpJR.K1rF4Ye",
+      "fullName": "vjgcfdx",
+      "school": "estin_bejaia",
+      "year": "Professor",
+      "major": "nbhgc",
+      "role": "teacher",
+      "bio": "",
+      "specializations": []
+    },
+    {
+      "id": "1782234396061",
+      "createdAt": "2026-06-23T17:06:36.061Z",
+      "email": "thelightofworld33@gmil.com",
+      "passwordHash": "$2a$10$xP6udxgjJ15Dn6I.EWMTZeHZYKkBfC/LH/qEtKdj1Wmyktx3tCkEW",
+      "fullName": "zdsa",
+      "school": "esi_alger",
+      "year": "3",
+      "major": "zdase",
+      "role": "student",
+      "bio": "Focused on Machine Learning, Artificial Intelligence, Data Science. AI Companion tone set to academic.",
+      "specializations": [
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Data Science",
+        "Software Engineering",
+        "Robotics",
+        "AI Ethics"
+      ],
+      "updatedAt": "2026-06-23T17:06:46.569Z"
+    },
+    {
+      "id": "1782238649474",
+      "createdAt": "2026-06-23T18:17:29.474Z",
+      "email": "manar20061@gmail.com",
+      "passwordHash": "$2a$10$RoTdfpErMCtpH5HdDZwJg.mWBZRZ2MBUeCDRbpAyytoRviBLSPUN2",
+      "fullName": "manar",
+      "school": "École Supérieure en Sciences et Technologies de l'Informatique et du Numérique (ESTIN)",
+      "year": "Year 3",
+      "major": "info",
+      "role": "student",
+      "bio": "Focused on Artificial Intelligence, Machine Learning, Data Science. AI Companion tone set to academic.",
+      "specializations": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Data Science",
+        "Software Engineering",
+        "AI Ethics"
+      ],
+      "updatedAt": "2026-06-23T18:22:43.668Z",
+      "gpa": "3.92 / 4.0",
+      "minor": "Cognitive Psychology"
+    },
+    {
+      "id": "1782239031462",
+      "createdAt": "2026-06-23T18:23:51.462Z",
+      "email": "manar31@gmail.com",
+      "passwordHash": "$2a$10$bMDgKi4xNoTCpkAgs3Ld8OOJ9hz9QKNEHTYEcqVP0HECy9u2tG58.",
+      "fullName": "manar",
+      "school": "estin_bejaia",
+      "year": "Professor",
+      "major": "informatic",
+      "role": "teacher",
+      "bio": "",
+      "specializations": []
+    },
+    {
+      "id": "1782728819662",
+      "createdAt": "2026-06-29T10:26:59.662Z",
+      "email": "manarnadji06@gmail.com",
+      "passwordHash": "$2a$10$UCH7rV/Ob63mmbWPsehthe2z501JE0PL6FQYcnpjX4H5AT2Eywg6W",
+      "fullName": "manar nadji",
+      "school": "estin_bejaia",
+      "year": "3",
+      "major": "inform",
+      "role": "student",
+      "bio": "Focused on Artificial Intelligence, Machine Learning, Software Engineering. AI Companion tone set to academic.",
+      "specializations": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Software Engineering",
+        "Data Science",
+        "AI Ethics"
+      ],
+      "updatedAt": "2026-06-29T15:34:04.881Z"
+    },
+    {
+      "id": "1782750129311",
+      "createdAt": "2026-06-29T16:22:09.311Z",
+      "email": "thelightofworld23@gmail.com",
+      "passwordHash": "$2a$10$PcbcCHw.8mduUpMqaoNpKeEKGBFuKZkKahV72Lu0DHhFAIqRlifHq",
+      "fullName": "manar nadji",
+      "school": "École Supérieure en Sciences et Technologies de l'Informatique et du Numérique (ESTIN)",
+      "year": "Year 3",
+      "major": "inform",
+      "role": "student",
+      "bio": "Focused on Artificial Intelligence, Machine Learning. AI Companion tone set to academic.",
+      "specializations": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "FRONT"
+      ],
+      "updatedAt": "2026-06-29T17:29:28.996Z",
+      "minor": "Cognitive Psychology"
     }
   ],
   "analyses": [
@@ -292,6 +485,49 @@
       "id": "1781474349597",
       "createdAt": "2026-06-14T21:59:09.597Z",
       "userId": "1781474316817",
+      "filename": "Chapitre 1 fr.pdf",
+      "summary": "This analysis summary was generated for \"Chapitre 1 fr.pdf\". The document covers key lectures and academic topics starting with \"Chapitre 1 : Notions fondamentales de la\".",
+      "concepts": [
+        {
+          "term": "Chapitre 1 : Notions fondament",
+          "definition": "A primary concept introduced at the beginning of this lecture material."
+        },
+        {
+          "term": "Superposition & Probability",
+          "definition": "The ability of a system to be in multiple states simultaneously, mapping out potential outcomes."
+        },
+        {
+          "term": "Academic Foundations",
+          "definition": "The core framework supporting the lectures and equations detailed within the document."
+        }
+      ],
+      "questions": [
+        {
+          "type": "Multiple Choice",
+          "question": "Which topic is primarily discussed in the first section of \"Chapitre 1 fr.pdf\"?",
+          "options": [
+            "A) Chapitre 1 : Notions fondamentales de la",
+            "B) Generic Database Management",
+            "C) Universal Systems Analysis"
+          ],
+          "answer": "A"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "What is the main topic of \"Chapitre 1 fr.pdf\"?",
+          "back": "It details the curriculum starting with: \"Chapitre 1 : Notions fondamentales de la\"."
+        },
+        {
+          "front": "What is the primary role of the Wave Function?",
+          "back": "It provides a probabilistic map of system states."
+        }
+      ]
+    },
+    {
+      "id": "1782750159624",
+      "createdAt": "2026-06-29T16:22:39.624Z",
+      "userId": "1782750129311",
       "filename": "Chapitre 1 fr.pdf",
       "summary": "This analysis summary was generated for \"Chapitre 1 fr.pdf\". The document covers key lectures and academic topics starting with \"Chapitre 1 : Notions fondamentales de la\".",
       "concepts": [
@@ -360,6 +596,508 @@
     }
   ],
   "notifications": [
+    {
+      "id": "1782754002898",
+      "read": false,
+      "createdAt": "2026-06-29T17:26:42.898Z",
+      "userId": "1782750129311",
+      "title": "Quantum Physics Mid-term Study Alert",
+      "message": "Don't forget your scheduled review session tomorrow morning at 9:00 AM.",
+      "type": "deadline"
+    },
+    {
+      "id": "1782754002892",
+      "read": false,
+      "createdAt": "2026-06-29T17:26:42.892Z",
+      "userId": "1782750129311",
+      "title": "Welcome to EduSphere AI!",
+      "message": "Explore your student dashboard, schedule planner, and upload lecture slides to start analyzing.",
+      "type": "system"
+    },
+    {
+      "id": "1782239218437",
+      "read": false,
+      "createdAt": "2026-06-23T18:26:58.437Z",
+      "userId": "1782239031462",
+      "title": "Grading Deadline: ML Project",
+      "message": "14 ML Project submissions in CS-520 are pending your grade. The grading deadline is tomorrow at 5:00 PM. Students are waiting for feedback.",
+      "type": "courses",
+      "priority": "high",
+      "icon": "rate_review",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "Start Grading",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782239218429",
+      "read": false,
+      "createdAt": "2026-06-23T18:26:58.429Z",
+      "userId": "1782239031462",
+      "title": "AI Insight: Engagement Drop Detected",
+      "message": "CS-402 has shown a 15% drop in participation over the past two weeks. EduSphere AI suggests generating a review session or interactive quiz to re-engage students.",
+      "type": "ai",
+      "priority": "normal",
+      "icon": "auto_awesome",
+      "iconColor": "#006b5f",
+      "iconBg": "#62fae3",
+      "actions": [
+        {
+          "label": "Generate Quiz",
+          "primary": true
+        },
+        {
+          "label": "View Analytics",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1782239218421",
+      "read": false,
+      "createdAt": "2026-06-23T18:26:58.421Z",
+      "userId": "1782239031462",
+      "title": "3 New Forum Questions",
+      "message": "Students in CS-520 (Machine Learning) have posted 3 unanswered questions in the discussion board. Topics include gradient descent and vanishing gradients.",
+      "type": "courses",
+      "priority": "normal",
+      "icon": "forum",
+      "iconColor": "#09007b",
+      "iconBg": "#e1e0ff",
+      "actions": [
+        {
+          "label": "Open Forum",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782239218410",
+      "read": false,
+      "createdAt": "2026-06-23T18:26:58.410Z",
+      "userId": "1782239031462",
+      "title": "New Assignment Submission",
+      "message": "Alex Chen submitted OS Assignment 4 — \"Thread Scheduling Algorithms\" in CS-402. Awaiting your review and grading.",
+      "type": "students",
+      "priority": "normal",
+      "icon": "assignment_turned_in",
+      "iconColor": "#006b5f",
+      "iconBg": "#d1fae5",
+      "actions": [
+        {
+          "label": "Grade Now",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782239218399",
+      "read": false,
+      "createdAt": "2026-06-23T18:26:58.399Z",
+      "userId": "1782239031462",
+      "title": "⚠️ At-Risk Student Alert",
+      "message": "Jordan Smith (CS-402) has missed 3 consecutive lab sessions and their quiz average has dropped to 45%. Immediate intervention is recommended.",
+      "type": "students",
+      "priority": "high",
+      "icon": "warning",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "View Student",
+          "primary": true
+        },
+        {
+          "label": "Send Message",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1782238923302",
+      "read": false,
+      "createdAt": "2026-06-23T18:22:03.302Z",
+      "userId": "1782238649474",
+      "title": "Quantum Physics Mid-term Study Alert",
+      "message": "Don't forget your scheduled review session tomorrow morning at 9:00 AM.",
+      "type": "deadline"
+    },
+    {
+      "id": "1782238923293",
+      "read": false,
+      "createdAt": "2026-06-23T18:22:03.293Z",
+      "userId": "1782238649474",
+      "title": "Welcome to EduSphere AI!",
+      "message": "Explore your student dashboard, schedule planner, and upload lecture slides to start analyzing.",
+      "type": "system"
+    },
+    {
+      "id": "1782235864387",
+      "read": false,
+      "createdAt": "2026-06-23T17:31:04.387Z",
+      "userId": "1782234396061",
+      "title": "Quantum Physics Mid-term Study Alert",
+      "message": "Don't forget your scheduled review session tomorrow morning at 9:00 AM.",
+      "type": "deadline"
+    },
+    {
+      "id": "1782235864379",
+      "read": false,
+      "createdAt": "2026-06-23T17:31:04.379Z",
+      "userId": "1782234396061",
+      "title": "Welcome to EduSphere AI!",
+      "message": "Explore your student dashboard, schedule planner, and upload lecture slides to start analyzing.",
+      "type": "system"
+    },
+    {
+      "id": "1782234145560",
+      "read": false,
+      "createdAt": "2026-06-23T17:02:25.560Z",
+      "userId": "1782234082788",
+      "title": "Grading Deadline: ML Project",
+      "message": "14 ML Project submissions in CS-520 are pending your grade. The grading deadline is tomorrow at 5:00 PM. Students are waiting for feedback.",
+      "type": "courses",
+      "priority": "high",
+      "icon": "rate_review",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "Start Grading",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782234145555",
+      "read": false,
+      "createdAt": "2026-06-23T17:02:25.555Z",
+      "userId": "1782234082788",
+      "title": "AI Insight: Engagement Drop Detected",
+      "message": "CS-402 has shown a 15% drop in participation over the past two weeks. EduSphere AI suggests generating a review session or interactive quiz to re-engage students.",
+      "type": "ai",
+      "priority": "normal",
+      "icon": "auto_awesome",
+      "iconColor": "#006b5f",
+      "iconBg": "#62fae3",
+      "actions": [
+        {
+          "label": "Generate Quiz",
+          "primary": true
+        },
+        {
+          "label": "View Analytics",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1782234145551",
+      "read": false,
+      "createdAt": "2026-06-23T17:02:25.551Z",
+      "userId": "1782234082788",
+      "title": "3 New Forum Questions",
+      "message": "Students in CS-520 (Machine Learning) have posted 3 unanswered questions in the discussion board. Topics include gradient descent and vanishing gradients.",
+      "type": "courses",
+      "priority": "normal",
+      "icon": "forum",
+      "iconColor": "#09007b",
+      "iconBg": "#e1e0ff",
+      "actions": [
+        {
+          "label": "Open Forum",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782234145545",
+      "read": false,
+      "createdAt": "2026-06-23T17:02:25.545Z",
+      "userId": "1782234082788",
+      "title": "New Assignment Submission",
+      "message": "Alex Chen submitted OS Assignment 4 — \"Thread Scheduling Algorithms\" in CS-402. Awaiting your review and grading.",
+      "type": "students",
+      "priority": "normal",
+      "icon": "assignment_turned_in",
+      "iconColor": "#006b5f",
+      "iconBg": "#d1fae5",
+      "actions": [
+        {
+          "label": "Grade Now",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782234145535",
+      "read": false,
+      "createdAt": "2026-06-23T17:02:25.535Z",
+      "userId": "1782234082788",
+      "title": "⚠️ At-Risk Student Alert",
+      "message": "Jordan Smith (CS-402) has missed 3 consecutive lab sessions and their quiz average has dropped to 45%. Immediate intervention is recommended.",
+      "type": "students",
+      "priority": "high",
+      "icon": "warning",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "View Student",
+          "primary": true
+        },
+        {
+          "label": "Send Message",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1781964844215",
+      "read": false,
+      "createdAt": "2026-06-20T14:14:04.215Z",
+      "userId": "1781964801916",
+      "title": "Grading Deadline: ML Project",
+      "message": "14 ML Project submissions in CS-520 are pending your grade. The grading deadline is tomorrow at 5:00 PM. Students are waiting for feedback.",
+      "type": "courses",
+      "priority": "high",
+      "icon": "rate_review",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "Start Grading",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781964844210",
+      "read": false,
+      "createdAt": "2026-06-20T14:14:04.210Z",
+      "userId": "1781964801916",
+      "title": "AI Insight: Engagement Drop Detected",
+      "message": "CS-402 has shown a 15% drop in participation over the past two weeks. EduSphere AI suggests generating a review session or interactive quiz to re-engage students.",
+      "type": "ai",
+      "priority": "normal",
+      "icon": "auto_awesome",
+      "iconColor": "#006b5f",
+      "iconBg": "#62fae3",
+      "actions": [
+        {
+          "label": "Generate Quiz",
+          "primary": true
+        },
+        {
+          "label": "View Analytics",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1781964844202",
+      "read": false,
+      "createdAt": "2026-06-20T14:14:04.202Z",
+      "userId": "1781964801916",
+      "title": "3 New Forum Questions",
+      "message": "Students in CS-520 (Machine Learning) have posted 3 unanswered questions in the discussion board. Topics include gradient descent and vanishing gradients.",
+      "type": "courses",
+      "priority": "normal",
+      "icon": "forum",
+      "iconColor": "#09007b",
+      "iconBg": "#e1e0ff",
+      "actions": [
+        {
+          "label": "Open Forum",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781964844190",
+      "read": false,
+      "createdAt": "2026-06-20T14:14:04.190Z",
+      "userId": "1781964801916",
+      "title": "New Assignment Submission",
+      "message": "Alex Chen submitted OS Assignment 4 — \"Thread Scheduling Algorithms\" in CS-402. Awaiting your review and grading.",
+      "type": "students",
+      "priority": "normal",
+      "icon": "assignment_turned_in",
+      "iconColor": "#006b5f",
+      "iconBg": "#d1fae5",
+      "actions": [
+        {
+          "label": "Grade Now",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781964844174",
+      "read": false,
+      "createdAt": "2026-06-20T14:14:04.174Z",
+      "userId": "1781964801916",
+      "title": "⚠️ At-Risk Student Alert",
+      "message": "Jordan Smith (CS-402) has missed 3 consecutive lab sessions and their quiz average has dropped to 45%. Immediate intervention is recommended.",
+      "type": "students",
+      "priority": "high",
+      "icon": "warning",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "View Student",
+          "primary": true
+        },
+        {
+          "label": "Send Message",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1781963301092",
+      "read": false,
+      "createdAt": "2026-06-20T13:48:21.092Z",
+      "userId": "1781963171871",
+      "title": "Quantum Physics Mid-term Study Alert",
+      "message": "Don't forget your scheduled review session tomorrow morning at 9:00 AM.",
+      "type": "deadline"
+    },
+    {
+      "id": "1781963301085",
+      "read": false,
+      "createdAt": "2026-06-20T13:48:21.085Z",
+      "userId": "1781963171871",
+      "title": "Welcome to EduSphere AI!",
+      "message": "Explore your student dashboard, schedule planner, and upload lecture slides to start analyzing.",
+      "type": "system"
+    },
+    {
+      "id": "1781788695322",
+      "read": false,
+      "createdAt": "2026-06-18T13:18:15.322Z",
+      "userId": "1781787538772",
+      "title": "Grading Deadline: ML Project",
+      "message": "14 ML Project submissions in CS-520 are pending your grade. The grading deadline is tomorrow at 5:00 PM. Students are waiting for feedback.",
+      "type": "courses",
+      "priority": "high",
+      "icon": "rate_review",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "Start Grading",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781788695316",
+      "read": false,
+      "createdAt": "2026-06-18T13:18:15.316Z",
+      "userId": "1781787538772",
+      "title": "AI Insight: Engagement Drop Detected",
+      "message": "CS-402 has shown a 15% drop in participation over the past two weeks. EduSphere AI suggests generating a review session or interactive quiz to re-engage students.",
+      "type": "ai",
+      "priority": "normal",
+      "icon": "auto_awesome",
+      "iconColor": "#006b5f",
+      "iconBg": "#62fae3",
+      "actions": [
+        {
+          "label": "Generate Quiz",
+          "primary": true
+        },
+        {
+          "label": "View Analytics",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1781788695309",
+      "read": false,
+      "createdAt": "2026-06-18T13:18:15.309Z",
+      "userId": "1781787538772",
+      "title": "3 New Forum Questions",
+      "message": "Students in CS-520 (Machine Learning) have posted 3 unanswered questions in the discussion board. Topics include gradient descent and vanishing gradients.",
+      "type": "courses",
+      "priority": "normal",
+      "icon": "forum",
+      "iconColor": "#09007b",
+      "iconBg": "#e1e0ff",
+      "actions": [
+        {
+          "label": "Open Forum",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781788695305",
+      "read": false,
+      "createdAt": "2026-06-18T13:18:15.305Z",
+      "userId": "1781787538772",
+      "title": "New Assignment Submission",
+      "message": "Alex Chen submitted OS Assignment 4 — \"Thread Scheduling Algorithms\" in CS-402. Awaiting your review and grading.",
+      "type": "students",
+      "priority": "normal",
+      "icon": "assignment_turned_in",
+      "iconColor": "#006b5f",
+      "iconBg": "#d1fae5",
+      "actions": [
+        {
+          "label": "Grade Now",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1781788695299",
+      "read": false,
+      "createdAt": "2026-06-18T13:18:15.299Z",
+      "userId": "1781787538772",
+      "title": "⚠️ At-Risk Student Alert",
+      "message": "Jordan Smith (CS-402) has missed 3 consecutive lab sessions and their quiz average has dropped to 45%. Immediate intervention is recommended.",
+      "type": "students",
+      "priority": "high",
+      "icon": "warning",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "View Student",
+          "primary": true
+        },
+        {
+          "label": "Send Message",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1781787386347",
+      "read": false,
+      "createdAt": "2026-06-18T12:56:26.347Z",
+      "userId": "1781786042063",
+      "title": "Quantum Physics Mid-term Study Alert",
+      "message": "Don't forget your scheduled review session tomorrow morning at 9:00 AM.",
+      "type": "deadline"
+    },
+    {
+      "id": "1781787386342",
+      "read": false,
+      "createdAt": "2026-06-18T12:56:26.342Z",
+      "userId": "1781786042063",
+      "title": "Welcome to EduSphere AI!",
+      "message": "Explore your student dashboard, schedule planner, and upload lecture slides to start analyzing.",
+      "type": "system"
+    },
     {
       "id": "1781732158768",
       "read": false,
@@ -1167,6 +1905,166 @@
       "teacherId": "1781714403541",
       "syllabusFile": "/uploads/syllabi/1781714466819-322996483.docx",
       "syllabusOriginalName": "ai ass1.docx"
+    },
+    {
+      "id": "1781787566494",
+      "createdAt": "2026-06-18T12:59:26.494Z",
+      "name": "CS-402: Operating Systems",
+      "code": "CS-402",
+      "description": "Deep dive into OS concepts: processes, threads, memory management, file systems, and scheduling algorithms.",
+      "students": 128,
+      "completion": 85,
+      "color": "#002045",
+      "schedule": "Mon / Wed 10:00–11:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566523",
+      "createdAt": "2026-06-18T12:59:26.523Z",
+      "name": "CS-520: Machine Learning",
+      "code": "CS-520",
+      "description": "Foundations of machine learning: supervised and unsupervised learning, neural networks, gradient descent, and model evaluation.",
+      "students": 64,
+      "completion": 42,
+      "color": "#3cddc7",
+      "schedule": "Tue / Thu 14:00–15:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566540",
+      "createdAt": "2026-06-18T12:59:26.540Z",
+      "name": "CS-301: Data Structures",
+      "code": "CS-301",
+      "description": "Core data structures: arrays, linked lists, trees, graphs, heaps, and their algorithmic applications.",
+      "students": 98,
+      "completion": 60,
+      "color": "#09007b",
+      "schedule": "Mon / Wed / Fri 09:00–10:00",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566548",
+      "createdAt": "2026-06-18T12:59:26.548Z",
+      "name": "CS-415: Network Security",
+      "code": "CS-415",
+      "description": "Cryptography, network protocols, threat modeling, intrusion detection, and secure system design.",
+      "students": 52,
+      "completion": 78,
+      "color": "#1a365d",
+      "schedule": "Tue / Thu 11:00–12:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781964810428",
+      "createdAt": "2026-06-20T14:13:30.428Z",
+      "name": "CS-402: Operating Systems",
+      "code": "CS-402",
+      "description": "Deep dive into OS concepts: processes, threads, memory management, file systems, and scheduling algorithms.",
+      "students": 128,
+      "completion": 85,
+      "color": "#002045",
+      "schedule": "Mon / Wed 10:00–11:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810469",
+      "createdAt": "2026-06-20T14:13:30.469Z",
+      "name": "CS-520: Machine Learning",
+      "code": "CS-520",
+      "description": "Foundations of machine learning: supervised and unsupervised learning, neural networks, gradient descent, and model evaluation.",
+      "students": 64,
+      "completion": 42,
+      "color": "#3cddc7",
+      "schedule": "Tue / Thu 14:00–15:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810493",
+      "createdAt": "2026-06-20T14:13:30.493Z",
+      "name": "CS-301: Data Structures",
+      "code": "CS-301",
+      "description": "Core data structures: arrays, linked lists, trees, graphs, heaps, and their algorithmic applications.",
+      "students": 98,
+      "completion": 60,
+      "color": "#09007b",
+      "schedule": "Mon / Wed / Fri 09:00–10:00",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810505",
+      "createdAt": "2026-06-20T14:13:30.505Z",
+      "name": "CS-415: Network Security",
+      "code": "CS-415",
+      "description": "Cryptography, network protocols, threat modeling, intrusion detection, and secure system design.",
+      "students": 52,
+      "completion": 78,
+      "color": "#1a365d",
+      "schedule": "Tue / Thu 11:00–12:30",
+      "semester": "Spring 2026",
+      "status": "active",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964830889",
+      "createdAt": "2026-06-20T14:13:50.889Z",
+      "name": "ai1",
+      "code": "ai",
+      "description": "b,vnc",
+      "schedule": "",
+      "semester": "Spring 2026",
+      "color": "#002045",
+      "students": 0,
+      "completion": 0,
+      "status": "active",
+      "teacherId": "1781964801916",
+      "syllabusFile": "/uploads/syllabi/1781964830848-387596201.docx",
+      "syllabusOriginalName": "ai ass1.docx"
+    },
+    {
+      "id": "1782234140043",
+      "createdAt": "2026-06-23T17:02:20.043Z",
+      "name": "njghfgc",
+      "code": "nbvg",
+      "description": "jhgf",
+      "schedule": "",
+      "semester": "Spring 2026",
+      "color": "#002045",
+      "students": 0,
+      "completion": 0,
+      "status": "active",
+      "teacherId": "1782234082788",
+      "syllabusFile": "/uploads/syllabi/1782234140017-280636085.docx",
+      "syllabusOriginalName": "ai ass1.docx"
+    },
+    {
+      "id": "1782239190721",
+      "createdAt": "2026-06-23T18:26:30.721Z",
+      "name": "ro1",
+      "code": "ro",
+      "description": "kfhjg",
+      "schedule": "",
+      "semester": "Spring 2026",
+      "color": "#006b5f",
+      "students": 0,
+      "completion": 0,
+      "status": "active",
+      "teacherId": "1782239031462",
+      "syllabusFile": "/uploads/syllabi/1782239190681-857025884.pdf",
+      "syllabusOriginalName": "Chapitre 1 fr.pdf"
     }
   ],
   "assignments": [
@@ -1313,6 +2211,78 @@
       "graded": 30,
       "courseId": "1781714420412",
       "teacherId": "1781714403541"
+    },
+    {
+      "id": "1781787566500",
+      "createdAt": "2026-06-18T12:59:26.500Z",
+      "courseCode": "CS-402",
+      "title": "OS Assignment 4 – Thread Scheduling",
+      "dueDate": "2026-06-15T23:59:00Z",
+      "totalPoints": 100,
+      "submissions": 95,
+      "graded": 81,
+      "courseId": "1781787566494",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566528",
+      "createdAt": "2026-06-18T12:59:26.528Z",
+      "courseCode": "CS-520",
+      "title": "ML Project – Neural Network Classifier",
+      "dueDate": "2026-06-14T23:59:00Z",
+      "totalPoints": 200,
+      "submissions": 50,
+      "graded": 36,
+      "courseId": "1781787566523",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566545",
+      "createdAt": "2026-06-18T12:59:26.545Z",
+      "courseCode": "CS-301",
+      "title": "Data Structures – Graph Traversal Lab",
+      "dueDate": "2026-06-20T23:59:00Z",
+      "totalPoints": 50,
+      "submissions": 30,
+      "graded": 30,
+      "courseId": "1781787566540",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781964810440",
+      "createdAt": "2026-06-20T14:13:30.440Z",
+      "courseCode": "CS-402",
+      "title": "OS Assignment 4 – Thread Scheduling",
+      "dueDate": "2026-06-15T23:59:00Z",
+      "totalPoints": 100,
+      "submissions": 95,
+      "graded": 81,
+      "courseId": "1781964810428",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810475",
+      "createdAt": "2026-06-20T14:13:30.475Z",
+      "courseCode": "CS-520",
+      "title": "ML Project – Neural Network Classifier",
+      "dueDate": "2026-06-14T23:59:00Z",
+      "totalPoints": 200,
+      "submissions": 50,
+      "graded": 36,
+      "courseId": "1781964810469",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810500",
+      "createdAt": "2026-06-20T14:13:30.500Z",
+      "courseCode": "CS-301",
+      "title": "Data Structures – Graph Traversal Lab",
+      "dueDate": "2026-06-20T23:59:00Z",
+      "totalPoints": 50,
+      "submissions": 30,
+      "graded": 30,
+      "courseId": "1781964810493",
+      "teacherId": "1781964801916"
     }
   ],
   "studentRecords": [
@@ -1575,6 +2545,136 @@
       "lastActive": "2 days ago",
       "courseId": "1781714420219",
       "teacherId": "1781714403541"
+    },
+    {
+      "id": "1781787566506",
+      "createdAt": "2026-06-18T12:59:26.506Z",
+      "name": "Alex Sterling",
+      "email": "alex.s@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 92,
+      "attendance": 96,
+      "riskLevel": "High Achiever",
+      "lastActive": "Today, 10:42 AM",
+      "courseId": "1781787566494",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566514",
+      "createdAt": "2026-06-18T12:59:26.514Z",
+      "name": "Maya Chen",
+      "email": "m.chen@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 78,
+      "attendance": 88,
+      "riskLevel": "Developing",
+      "lastActive": "Yesterday",
+      "courseId": "1781787566494",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566518",
+      "createdAt": "2026-06-18T12:59:26.518Z",
+      "name": "Jordan Smith",
+      "email": "jsmith@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 45,
+      "attendance": 62,
+      "riskLevel": "At Risk",
+      "lastActive": "4 days ago",
+      "courseId": "1781787566494",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566532",
+      "createdAt": "2026-06-18T12:59:26.532Z",
+      "name": "Sarah Williams",
+      "email": "s.williams@university.edu",
+      "courseCode": "CS-520",
+      "quizAvg": 88,
+      "attendance": 94,
+      "riskLevel": "High Achiever",
+      "lastActive": "Today, 08:15 AM",
+      "courseId": "1781787566523",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781787566536",
+      "createdAt": "2026-06-18T12:59:26.536Z",
+      "name": "Ethan Brooks",
+      "email": "e.brooks@university.edu",
+      "courseCode": "CS-520",
+      "quizAvg": 71,
+      "attendance": 82,
+      "riskLevel": "Developing",
+      "lastActive": "2 days ago",
+      "courseId": "1781787566523",
+      "teacherId": "1781787538772"
+    },
+    {
+      "id": "1781964810448",
+      "createdAt": "2026-06-20T14:13:30.448Z",
+      "name": "Alex Sterling",
+      "email": "alex.s@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 92,
+      "attendance": 96,
+      "riskLevel": "High Achiever",
+      "lastActive": "Today, 10:42 AM",
+      "courseId": "1781964810428",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810456",
+      "createdAt": "2026-06-20T14:13:30.456Z",
+      "name": "Maya Chen",
+      "email": "m.chen@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 78,
+      "attendance": 88,
+      "riskLevel": "Developing",
+      "lastActive": "Yesterday",
+      "courseId": "1781964810428",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810462",
+      "createdAt": "2026-06-20T14:13:30.462Z",
+      "name": "Jordan Smith",
+      "email": "jsmith@university.edu",
+      "courseCode": "CS-402",
+      "quizAvg": 45,
+      "attendance": 62,
+      "riskLevel": "At Risk",
+      "lastActive": "4 days ago",
+      "courseId": "1781964810428",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810480",
+      "createdAt": "2026-06-20T14:13:30.480Z",
+      "name": "Sarah Williams",
+      "email": "s.williams@university.edu",
+      "courseCode": "CS-520",
+      "quizAvg": 88,
+      "attendance": 94,
+      "riskLevel": "High Achiever",
+      "lastActive": "Today, 08:15 AM",
+      "courseId": "1781964810469",
+      "teacherId": "1781964801916"
+    },
+    {
+      "id": "1781964810486",
+      "createdAt": "2026-06-20T14:13:30.486Z",
+      "name": "Ethan Brooks",
+      "email": "e.brooks@university.edu",
+      "courseCode": "CS-520",
+      "quizAvg": 71,
+      "attendance": 82,
+      "riskLevel": "Developing",
+      "lastActive": "2 days ago",
+      "courseId": "1781964810469",
+      "teacherId": "1781964801916"
     }
   ],
   "submissions": [],
@@ -1598,6 +2698,36 @@
       "time": "12:00",
       "type": "MEDIUM",
       "description": "bg-secondary-fixed text-on-secondary-container"
+    },
+    {
+      "id": "1781786929414",
+      "createdAt": "2026-06-18T12:48:49.414Z",
+      "userId": "1781786042063",
+      "title": "naghsal lommaan",
+      "date": "2026-06-18",
+      "time": "12:00",
+      "type": "HIGH PRIORITY",
+      "description": "bg-error/10 text-error"
+    },
+    {
+      "id": "1781963222012",
+      "createdAt": "2026-06-20T13:47:02.012Z",
+      "userId": "1781963171871",
+      "title": "homework",
+      "date": "2026-06-20",
+      "time": "12:00",
+      "type": "HIGH PRIORITY",
+      "description": "bg-error/10 text-error"
+    },
+    {
+      "id": "1782238784020",
+      "createdAt": "2026-06-23T18:19:44.020Z",
+      "userId": "1782238649474",
+      "title": "jvhf",
+      "date": "2026-06-23",
+      "time": "12:00",
+      "type": "HIGH",
+      "description": ""
     }
   ]
 }

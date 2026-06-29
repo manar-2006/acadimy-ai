@@ -3,7 +3,7 @@ const db = require('../config/db');
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { fullName, school, year, major, bio, specializations, gpa, minor } = req.body;
+    const { fullName, school, year, major, bio, specializations, gpa, minor, avatar } = req.body;
     
     const updateData = {};
     if (fullName !== undefined) updateData.fullName = fullName;
@@ -16,6 +16,7 @@ exports.updateProfile = async (req, res) => {
     }
     if (gpa !== undefined) updateData.gpa = gpa;
     if (minor !== undefined) updateData.minor = minor;
+    if (avatar !== undefined) updateData.avatar = avatar;
 
     const updatedUser = await db.updateUser(req.user.id, updateData);
 

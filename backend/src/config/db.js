@@ -352,12 +352,34 @@ const getAllStudentRecordsByTeacher = async (teacherId) => {
 const saveSubmission = async (submission) => {
   const db = await readDB();
   if (!db.submissions) db.submissions = [];
+  
+  const existingIdx = db.submissions.findIndex(
+    s => s.assignmentId === submission.assignmentId && s.studentId === submission.studentId
+  );
+  
   const newSubmission = {
-    id: Date.now().toString(),
-    createdAt: new Date().toISOString(),
-    ...submission
+    id: existingIdx !== -1 ? db.submissions[existingIdx].id : Date.now().toString(),
+    createdAt: existingIdx !== -1 ? db.submissions[existingIdx].createdAt : new Date().toISOString(),
+    status: 'submitted',
+    ...submission,
+    updatedAt: new Date().toISOString()
   };
-  db.submissions.push(newSubmission);
+  
+  if (existingIdx !== -1) {
+    db.submissions[existingIdx] = newSubmission;
+  } else {
+    db.submissions.push(newSubmission);
+  }
+  
+  // Update submission counts on assignment
+  const assignments = db.assignments || [];
+  const aIdx = assignments.findIndex(a => a.id === submission.assignmentId);
+  if (aIdx !== -1) {
+    const assignmentSubmissions = db.submissions.filter(s => s.assignmentId === submission.assignmentId);
+    assignments[aIdx].submissions = assignmentSubmissions.length;
+    assignments[aIdx].graded = assignmentSubmissions.filter(s => s.status === 'graded').length;
+  }
+  
   await writeDB(db);
   return newSubmission;
 };
@@ -395,6 +417,16 @@ const gradeSubmission = async (submissionId, updates) => {
   return db.submissions[index];
 };
 
+const getAllCourses = async () => {
+  const db = await readDB();
+  return db.courses || [];
+};
+
+const getStudentRecordsByStudentId = async (studentId) => {
+  const db = await readDB();
+  return (db.studentRecords || []).filter(s => s.studentId === studentId);
+};
+
 module.exports = {
   getUsers: runLocked(getUsers),
   getUserByEmail: runLocked(getUserByEmail),
@@ -427,5 +459,7 @@ module.exports = {
   getAllStudentRecordsByTeacher: runLocked(getAllStudentRecordsByTeacher),
   saveSubmission: runLocked(saveSubmission),
   getSubmissionsByAssignmentId: runLocked(getSubmissionsByAssignmentId),
-  gradeSubmission: runLocked(gradeSubmission)
+  gradeSubmission: runLocked(gradeSubmission),
+  getAllCourses: runLocked(getAllCourses),
+  getStudentRecordsByStudentId: runLocked(getStudentRecordsByStudentId)
 };

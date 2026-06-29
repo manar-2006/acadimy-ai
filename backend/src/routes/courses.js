@@ -25,11 +25,20 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter, limits: { fileSize: 20 * 1024 * 1024 } });
 
-// GET all courses for the authenticated teacher
+// GET all available courses (with teacher profiles)
+router.get('/all', authMiddleware, coursesController.getAllCourses);
+
+// GET all courses for the authenticated teacher/student
 router.get('/', authMiddleware, coursesController.getCourses);
+
+// GET all assignments for the enrolled student's courses
+router.get('/student/assignments', authMiddleware, coursesController.getStudentAssignments);
 
 // GET a single course by ID
 router.get('/:id', authMiddleware, coursesController.getCourseById);
+
+// POST enroll a student in a course
+router.post('/:id/enroll', authMiddleware, coursesController.enrollCourse);
 
 // POST create a new course (optional syllabus file)
 router.post('/', authMiddleware, upload.single('syllabus'), coursesController.createCourse);
@@ -50,6 +59,9 @@ router.post('/:id/assignments', authMiddleware, coursesController.createAssignme
 // --- Submissions sub-routes ---
 // GET all submissions for an assignment
 router.get('/:courseId/assignments/:assignmentId/submissions', authMiddleware, coursesController.getSubmissions);
+
+// POST submit an assignment
+router.post('/:courseId/assignments/:assignmentId/submissions', authMiddleware, coursesController.submitAssignment);
 
 // PUT grade a submission
 router.put('/:courseId/assignments/:assignmentId/submissions/:submissionId', authMiddleware, coursesController.gradeSubmission);

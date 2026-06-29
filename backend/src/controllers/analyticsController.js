@@ -21,6 +21,32 @@ exports.getTeacherAnalytics = async (req, res) => {
     const studentRecords = await db.getAllStudentRecordsByTeacher(req.user.id);
     const atRiskCount = studentRecords.filter(s => s.riskLevel === 'At Risk').length;
 
+    const totalAssignments = assignments.length;
+    const totalGraded = assignments.reduce((sum, a) => sum + (a.graded || 0), 0);
+
+    const formattedCourses = [];
+    for (const c of courses) {
+      const courseAssignments = await db.getAssignmentsByCourseId(c.id);
+      const cAssignmentsCount = courseAssignments.length;
+      const cSubmittedCount = courseAssignments.reduce((sum, a) => sum + (a.submissions || 0), 0);
+      const cGradedCount = courseAssignments.reduce((sum, a) => sum + (a.graded || 0), 0);
+
+      formattedCourses.push({
+        id: c.id,
+        name: c.name,
+        title: c.name,
+        code: c.code,
+        subject: c.description || '',
+        enrolledStudents: c.students || 0,
+        students: c.students || 0,
+        completion: c.completion || 0,
+        color: c.color || '#002045',
+        totalAssignments: cAssignmentsCount,
+        submittedAssignments: cSubmittedCount,
+        gradedSubmissions: cGradedCount
+      });
+    }
+
     // Weekly engagement trend (mock data for now)
     const engagementTrend = [
       { week: 'Week 8',  engagement: 68 },
@@ -40,6 +66,10 @@ exports.getTeacherAnalytics = async (req, res) => {
     ];
 
     res.json({
+      totalCourses: courses.length,
+      totalStudents,
+      totalAssignments,
+      totalGraded,
       summary: {
         totalStudents,
         activeCourses: courses.length,
@@ -47,14 +77,7 @@ exports.getTeacherAnalytics = async (req, res) => {
         pendingGrades,
         atRiskCount,
       },
-      courses: courses.map(c => ({
-        id: c.id,
-        name: c.name,
-        code: c.code,
-        students: c.students || 0,
-        completion: c.completion || 0,
-        color: c.color || '#002045',
-      })),
+      courses: formattedCourses,
       engagementTrend,
       scoreDistribution,
     });
