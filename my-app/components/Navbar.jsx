@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar({ setMobileNavOpen, title = "EduSphere AI" }) {
   const router = useRouter();
+  const { language, changeLanguage, t } = useLanguage();
   const [profileRoute, setProfileRoute] = useState('/student/student-profile');
   const [askAiRoute, setAskAiRoute] = useState('/student/academic-assistant');
   const [notificationsRoute, setNotificationsRoute] = useState('/student/notifications-center');
@@ -36,6 +38,27 @@ export default function Navbar({ setMobileNavOpen, title = "EduSphere AI" }) {
       }
     }
   }, []);
+
+  const getTranslatedTitle = (originalTitle) => {
+    const low = (originalTitle || '').toLowerCase();
+    if (low.includes('dashboard')) return t('dashboard');
+    if (low.includes('assistant') || low.includes('ask ai')) return t('aiAssistant');
+    if (low.includes('pdf')) return t('pdfAnalyzer');
+    if (low.includes('courses') || low.includes('course')) return t('courses');
+    if (low.includes('translate') || low.includes('translator')) return t('smartTranslator');
+    if (low.includes('planner')) return t('studyPlanner');
+    if (low.includes('quiz') || low.includes('flashcards')) return t('quizFlashcards');
+    if (low.includes('certificate')) return t('certificates');
+    if (low.includes('career')) return t('careerCenter');
+    if (low.includes('job') || low.includes('internship')) return t('internshipsJobs');
+    if (low.includes('club') || low.includes('event')) return t('clubsEvents');
+    if (low.includes('performance') || low.includes('analytic')) return t('performance');
+    if (low.includes('community') || low.includes('message')) return t('community');
+    if (low.includes('notification')) return t('notifications');
+    if (low.includes('settings')) return t('settings');
+    if (low.includes('profile')) return t('myProfile');
+    return originalTitle;
+  };
 
   const toggleRole = () => {
     if (typeof window !== 'undefined') {
@@ -73,13 +96,24 @@ export default function Navbar({ setMobileNavOpen, title = "EduSphere AI" }) {
           <span className="material-symbols-outlined">menu</span>
         </button>
         <div>
-          <h2 className="font-sora text-[20px] font-bold text-primary">{title}</h2>
+          <h2 className="font-sora text-[20px] font-bold text-primary">{getTranslatedTitle(title)}</h2>
         </div>
       </div>
 
       {/* Right-side quick controls */}
       <div className="flex items-center gap-4">
-
+        {/* Language Selector Dropdown */}
+        <div className="relative">
+          <select
+            value={language}
+            onChange={(e) => changeLanguage(e.target.value)}
+            className="bg-transparent border border-outline-variant text-[13px] font-medium rounded-lg px-2.5 py-1.5 outline-none cursor-pointer hover:bg-surface-container-high transition-colors text-on-surface"
+          >
+            <option value="en">🇺🇸 EN</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="ar">🇩🇿 AR</option>
+          </select>
+        </div>
 
         {/* Quick Ask AI button */}
         <button
@@ -87,7 +121,7 @@ export default function Navbar({ setMobileNavOpen, title = "EduSphere AI" }) {
           className="hidden sm:flex items-center gap-2 px-4 py-2 bg-secondary-fixed text-on-secondary-fixed font-semibold text-[13px] rounded-lg hover:opacity-90 transition-all border-none cursor-pointer"
         >
           <span className="material-symbols-outlined text-[18px]">auto_awesome</span>
-          Ask AI
+          {t('askAI')}
         </button>
 
         {/* Notifications Icon with Indicator */}

@@ -3,9 +3,12 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function EduSphereLogin() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
@@ -127,19 +130,22 @@ export default function EduSphereLogin() {
         {/* ── Right: Form Panel ── */}
         <div className="flex-1 flex flex-col justify-center items-center px-6 md:px-12 py-10 bg-white relative">
 
-          {/* Mobile Logo */}
-          <div className="lg:hidden absolute top-6 left-6 flex items-center gap-2">
+          {/* Mobile Logo + Language Switcher */}
+          <div className="absolute top-6 left-6 flex items-center gap-2 lg:hidden">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#002045] to-[#006b5f] flex items-center justify-center">
               <span className="material-symbols-outlined text-white text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
             </div>
             <span className="text-[#002045] font-['Sora'] text-[16px] font-bold">EduSphere AI</span>
           </div>
+          <div className="absolute top-6 right-6">
+            <LanguageSwitcher variant="light" />
+          </div>
 
           <div className="w-full max-w-[400px] fade-in">
             {/* Header */}
             <div className="mb-8">
-              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">Welcome back</h2>
-              <p className="text-[#74777f] text-[14px]">Sign in to your EduSphere account to continue your journey.</p>
+              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">{t('authSignIn')}</h2>
+              <p className="text-[#74777f] text-[14px]">{t('authSignInSubtitle')}</p>
             </div>
 
             {/* Error Banner */}
@@ -155,7 +161,7 @@ export default function EduSphereLogin() {
 
               {/* Email */}
               <div>
-                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">University Email</label>
+                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">{t('authEmail')}</label>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'email' ? '#006b5f' : '#c4c6cf' }}>mail</span>
                   <input
@@ -176,8 +182,8 @@ export default function EduSphereLogin() {
               {/* Password */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-[11px] font-bold text-[#43474e] uppercase tracking-wider" htmlFor="password">Password</label>
-                  <Link href="/auth/forgot-password" className="text-[12px] text-[#006b5f] font-semibold hover:underline">Forgot?</Link>
+                  <label className="text-[11px] font-bold text-[#43474e] uppercase tracking-wider" htmlFor="password">{t('authPassword')}</label>
+                  <Link href="/auth/forgot-password" className="text-[12px] text-[#006b5f] font-semibold hover:underline">{t('authForgotPassword')}</Link>
                 </div>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'password' ? '#006b5f' : '#c4c6cf' }}>lock</span>
@@ -213,11 +219,11 @@ export default function EduSphereLogin() {
                 {loading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Signing in…
+                    {t('loading')}
                   </>
                 ) : (
                   <>
-                    Sign In
+                    {t('authSignInBtn')}
                     <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                   </>
                 )}
@@ -250,8 +256,8 @@ export default function EduSphereLogin() {
 
             {/* Footer link */}
             <p className="text-center text-[13px] text-[#74777f]">
-              Don't have an account?{' '}
-              <button onClick={() => router.push('/auth/signup')} className="text-[#006b5f] font-bold hover:underline">Create one</button>
+              {t('authNoAccount')}{' '}
+              <button onClick={() => router.push('/auth/signup')} className="text-[#006b5f] font-bold hover:underline">{t('authSignUpLink')}</button>
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 import "./globals.css";
+import Providers from "./Providers";
 
 export const metadata = {
   title: "EduSphere AI - Your Intelligent University Companion",
@@ -14,7 +15,11 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

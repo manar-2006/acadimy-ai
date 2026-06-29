@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function SettingsPage() {
   const router = useRouter();
+  const { language, changeLanguage, t } = useLanguage();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('account');
   const [user, setUser] = useState({
@@ -52,32 +54,32 @@ export default function SettingsPage() {
 
       {/* Main Container Wrapper */}
       <div className="flex-1 lg:ml-64 flex flex-col min-h-screen">
-        <Navbar setMobileNavOpen={setMobileNavOpen} title="Settings" />
+        <Navbar setMobileNavOpen={setMobileNavOpen} title={t('settings')} />
 
         {/* Dynamic Content Layout */}
         <main className="flex-grow p-6 md:p-10 max-w-6xl mx-auto w-full">
           <div className="mb-10">
-            <h2 className="font-headline-lg text-headline-lg text-primary mb-2">Settings</h2>
-            <p className="font-body-md text-on-surface-variant">Manage your academic ecosystem and personal preferences.</p>
+            <h2 className="font-headline-lg text-headline-lg text-primary mb-2">{t('settings')}</h2>
+            <p className="font-body-md text-on-surface-variant">{t('settingsDesc')}</p>
           </div>
 
           <div className="flex gap-10">
             {/* Sub Tabs Navigation */}
             <nav className="w-64 space-y-2 shrink-0">
               <button className={getTabClassName('account')} onClick={() => setActiveTab('account')}>
-                <span className="material-symbols-outlined">person</span> Account
+                <span className="material-symbols-outlined">person</span> {t('settingsAccountTab')}
               </button>
               <button className={getTabClassName('appearance')} onClick={() => setActiveTab('appearance')}>
-                <span className="material-symbols-outlined">palette</span> Appearance
+                <span className="material-symbols-outlined">palette</span> {t('settingsAppearanceTab')}
               </button>
               <button className={getTabClassName('notifications')} onClick={() => setActiveTab('notifications')}>
-                <span className="material-symbols-outlined">notifications_active</span> Notifications
+                <span className="material-symbols-outlined">notifications_active</span> {t('notifications')}
               </button>
               <button className={getTabClassName('privacy')} onClick={() => setActiveTab('privacy')}>
-                <span className="material-symbols-outlined">shield</span> Privacy & Data
+                <span className="material-symbols-outlined">shield</span> {t('settingsPrivacyTab')}
               </button>
               <button className={getTabClassName('language')} onClick={() => setActiveTab('language')}>
-                <span className="material-symbols-outlined">language</span> Language
+                <span className="material-symbols-outlined">language</span> {t('settingsLanguageTab')}
               </button>
             </nav>
 
@@ -100,46 +102,46 @@ export default function SettingsPage() {
                         </button>
                       </div>
                       <div>
-                        <h3 className="font-headline-sm text-primary">Profile Information</h3>
-                        <p className="text-body-sm text-on-surface-variant">Update your public profile and institutional details.</p>
+                        <h3 className="font-headline-sm text-primary">{t('settingsProfileInfo')}</h3>
+                        <p className="text-body-sm text-on-surface-variant">{t('settingsProfileInfoDesc')}</p>
                       </div>
                     </div>
                     <button 
                       onClick={() => router.push('/student/student-profile')}
                       className="px-6 py-2 border border-secondary text-secondary font-bold rounded-lg hover:bg-secondary/5 transition-all"
                     >
-                      Edit Profile
+                      {t('editProfileBtn')}
                     </button>
                   </div>
                   <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-2 group">
-                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">FULL NAME</label>
+                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">{t('settingsFullNameLabel')}</label>
                       <input className="w-full p-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all outline-none" readOnly type="text" value={user.fullName} />
                     </div>
                     <div className="space-y-2 group">
-                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">EMAIL ADDRESS</label>
+                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">{t('settingsEmailLabel')}</label>
                       <input className="w-full p-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all outline-none" readOnly type="email" value={user.email} />
                     </div>
                     <div className="space-y-2 col-span-2 group">
-                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">INSTITUTION</label>
+                      <label className="font-label-md text-on-surface-variant group-focus-within:text-secondary block transition-colors">{t('settingsInstitutionLabel')}</label>
                       <input className="w-full p-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all outline-none" readOnly type="text" value={user.school} />
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-surface-container-lowest border border-outline-variant p-8 rounded-xl shadow-sm">
-                  <h3 className="font-headline-sm text-primary mb-6">Security</h3>
+                  <h3 className="font-headline-sm text-primary mb-6">{t('settingsSecurity')}</h3>
                   <div className="flex items-center justify-between py-4 border-b border-outline-variant">
                     <div>
-                      <p className="font-bold text-on-surface">Password</p>
-                      <p className="text-body-sm text-on-surface-variant">Last changed 3 months ago</p>
+                      <p className="font-bold text-on-surface">{t('Password')}</p>
+                      <p className="text-body-sm text-on-surface-variant">{t('Yesterday') || 'Yesterday'}</p>
                     </div>
-                    <button className="text-secondary font-bold hover:underline">Change Password</button>
+                    <button className="text-secondary font-bold hover:underline">{t('changePasswordBtn')}</button>
                   </div>
                   <div className="flex items-center justify-between py-4">
                     <div>
-                      <p className="font-bold text-on-surface">Two-Factor Authentication</p>
-                      <p className="text-body-sm text-on-surface-variant">Add an extra layer of security to your account.</p>
+                      <p className="font-bold text-on-surface">{t('settingsTfa')}</p>
+                      <p className="text-body-sm text-on-surface-variant">{t('settingsTfaDesc')}</p>
                     </div>
                     <div className="relative inline-flex items-center cursor-pointer">
                       <input defaultChecked className="sr-only peer" type="checkbox" id="tfa-toggle" />
@@ -152,8 +154,8 @@ export default function SettingsPage() {
               {/* Appearance Panel */}
               <section className={activeTab === 'appearance' ? 'space-y-6' : 'hidden'}>
                 <div className="bg-surface-container-lowest border border-outline-variant p-8 rounded-xl shadow-sm">
-                  <h3 className="font-headline-sm text-primary mb-2">Theme Preferences</h3>
-                  <p className="text-body-sm text-on-surface-variant mb-8">Customize how EduSphere AI looks on your device.</p>
+                  <h3 className="font-headline-sm text-primary mb-2">{t('settingsThemePref')}</h3>
+                  <p className="text-body-sm text-on-surface-variant mb-8">{t('settingsThemePrefDesc')}</p>
                   <div className="grid grid-cols-3 gap-6">
                     <button className="group flex flex-col gap-4">
                       <div className="aspect-video w-full bg-surface border-2 border-secondary rounded-lg flex items-center justify-center overflow-hidden">
@@ -292,30 +294,19 @@ export default function SettingsPage() {
               {/* Language Panel */}
               <section className={activeTab === 'language' ? 'space-y-6' : 'hidden'}>
                 <div className="bg-surface-container-lowest border border-outline-variant p-8 rounded-xl shadow-sm">
-                  <h3 className="font-headline-sm text-primary mb-6">Academic Language Selection</h3>
+                  <h3 className="font-headline-sm text-primary mb-6">{t('settingsLanguageTab')}</h3>
                   <div className="space-y-4">
-                    <label className="font-label-md text-on-surface-variant block uppercase tracking-wider">Interface Language</label>
-                    <select className="w-full p-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md appearance-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all outline-none" defaultValue="en">
-                      <option value="en">English (Academic Standard)</option>
-                      <option value="fr">Français (Académique)</option>
-                      <option value="de">Deutsch (Akademisch)</option>
-                      <option value="zh">中文 (学术标准)</option>
-                      <option value="es">Español (Académico)</option>
+                    <label className="font-label-md text-on-surface-variant block uppercase tracking-wider">{t('Interface Language') || 'Interface Language'}</label>
+                    <select 
+                      value={language}
+                      onChange={(e) => changeLanguage(e.target.value)}
+                      className="w-full p-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all outline-none"
+                    >
+                      <option value="en">English</option>
+                      <option value="fr">Français</option>
+                      <option value="ar">العربية</option>
                     </select>
-                    <p className="text-body-sm text-on-surface-variant italic">Changing the interface language will not affect the language of your source research materials.</p>
-                  </div>
-                  <div className="mt-8 space-y-4">
-                    <label className="font-label-md text-on-surface-variant block uppercase tracking-wider">AI Analysis Preference</label>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="border-2 border-secondary p-4 rounded-lg bg-secondary/5">
-                        <p className="font-bold text-secondary">Original Source Language</p>
-                        <p className="text-body-sm">AI will analyze and respond in the original language of documents.</p>
-                      </div>
-                      <div className="border border-outline-variant p-4 rounded-lg hover:border-secondary transition-all cursor-pointer">
-                        <p className="font-bold text-on-surface">Translate to Default</p>
-                        <p className="text-body-sm text-on-surface-variant">AI will automatically translate insights to your interface language.</p>
-                      </div>
-                    </div>
+                    <p className="text-body-sm text-on-surface-variant italic">{t('Changing the language will reload the workspace settings.') || 'Changing the language will apply standard interface updates.'}</p>
                   </div>
                 </div>
               </section>

@@ -3,10 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -15,21 +17,21 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
   };
 
   const navItems = [
-    { icon: "dashboard", label: "Dashboard", path: "/student/dashboard" },
-    { icon: "auto_awesome", label: "AI Assistant", path: "/student/academic-assistant" },
-    { icon: "picture_as_pdf", label: "PDF Analyzer", path: "/student/smart-pdf-analyzer" },
-    { icon: "school", label: "Courses", path: "/student/courses" },
-    { icon: "translate", label: "Smart Translator", path: "/student/smart-translator" },
-    { icon: "calendar_month", label: "Study Planner", path: "/student/study-planner" },
-    { icon: "quiz", label: "Quiz & Flashcards", path: "/student/quiz-flashcards" },
-    { icon: "workspace_premium", label: "Certificates", path: "/student/certificates-center" },
-    { icon: "work_history", label: "Career Center", path: "/student/career-center" },
-    { icon: "work", label: "Internships & Jobs", path: "/student/internships-jobs" },
-    { icon: "groups", label: "Clubs & Events", path: "/student/clubs-events" },
-    { icon: "analytics", label: "Performance", path: "/student/performance-analytics" },
-    { icon: "forum", label: "Community", path: "/student/community-messages" },
-    { icon: "notifications", label: "Notifications", path: "/student/notifications-center" },
-    { icon: "settings", label: "Settings", path: "/student/settings" },
+    { icon: "dashboard", label: t("dashboard"), path: "/student/dashboard" },
+    { icon: "auto_awesome", label: t("aiAssistant"), path: "/student/academic-assistant" },
+    { icon: "picture_as_pdf", label: t("pdfAnalyzer"), path: "/student/smart-pdf-analyzer" },
+    { icon: "school", label: t("courses"), path: "/student/courses" },
+    { icon: "translate", label: t("smartTranslator"), path: "/student/smart-translator" },
+    { icon: "calendar_month", label: t("studyPlanner"), path: "/student/study-planner" },
+    { icon: "quiz", label: t("quizFlashcards"), path: "/student/quiz-flashcards" },
+    { icon: "workspace_premium", label: t("certificates"), path: "/student/certificates-center" },
+    { icon: "work_history", label: t("careerCenter"), path: "/student/career-center" },
+    { icon: "work", label: t("internshipsJobs"), path: "/student/internships-jobs" },
+    { icon: "groups", label: t("clubsEvents"), path: "/student/clubs-events" },
+    { icon: "analytics", label: t("performance"), path: "/student/performance-analytics" },
+    { icon: "forum", label: t("community"), path: "/student/community-messages" },
+    { icon: "notifications", label: t("notifications"), path: "/student/notifications-center" },
+    { icon: "settings", label: t("settings"), path: "/student/settings" },
   ];
 
   return (
@@ -54,7 +56,7 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
           </div>
           <div>
             <h1 className="font-sora text-[20px] font-bold text-primary leading-tight">EduSphere AI</h1>
-            <p className="font-label-md text-[11px] text-on-surface-variant opacity-75">Student Hub</p>
+            <p className="font-label-md text-[11px] text-on-surface-variant opacity-75">{t('studentHub')}</p>
           </div>
         </div>
 
@@ -92,14 +94,14 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
             <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: pathname === "/student/student-profile" ? "'FILL' 1" : "'FILL' 0" }}>
               account_circle
             </span>
-            My Profile
+            {t('myProfile')}
           </Link>
           <button
             onClick={() => { setMobileNavOpen(false); handleLogout(); }}
             className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all text-[13px] font-medium border-none bg-transparent cursor-pointer"
           >
             <span className="material-symbols-outlined text-[20px]">logout</span>
-            Logout
+            {t('logout')}
           </button>
         </div>
       </aside>

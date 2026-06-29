@@ -2,9 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default function SignUpPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -123,21 +126,25 @@ export default function SignUpPage() {
             <span className="text-[#002045] font-['Sora'] text-[16px] font-bold">EduSphere AI</span>
           </div>
 
+          <div className="absolute top-6 right-6">
+            <LanguageSwitcher variant="light" />
+          </div>
+
           <div className="w-full max-w-[400px] fade-in">
 
             {/* Header */}
             <div className="mb-8">
-              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">Create your account</h2>
-              <p className="text-[#74777f] text-[14px]">Join EduSphere AI and transform how you learn or teach.</p>
+              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">{t('authSignUp')}</h2>
+              <p className="text-[#74777f] text-[14px]">{t('authSignUpSubtitle')}</p>
             </div>
 
             {/* Role Toggle */}
             <div className="mb-6">
-              <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-3">I am a</label>
+              <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-3">{t('authRole')}</label>
               <div className="grid grid-cols-2 gap-3 p-1 bg-[#f2f4f6] rounded-xl">
                 {[
-                  { label: "Student", icon: "person", value: "student" },
-                  { label: "Teacher", icon: "school", value: "teacher" },
+                  { label: t('authStudent'), icon: "person", value: "student" },
+                  { label: t('authTeacher'), icon: "school", value: "teacher" },
                 ].map((r) => (
                   <button
                     key={r.value}
@@ -161,7 +168,7 @@ export default function SignUpPage() {
 
               {/* Email */}
               <div>
-                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">University Email</label>
+                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">{t('authEmail')}</label>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'email' ? '#006b5f' : '#c4c6cf' }}>mail</span>
                   <input
@@ -182,7 +189,7 @@ export default function SignUpPage() {
 
               {/* Password */}
               <div>
-                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="password">Choose Password</label>
+                <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="password">{t('authPassword')}</label>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'password' ? '#006b5f' : '#c4c6cf' }}>lock</span>
                   <input
@@ -217,10 +224,10 @@ export default function SignUpPage() {
                   {agreeTerms && <span className="material-symbols-outlined text-white text-[14px]">check</span>}
                 </div>
                 <p className="text-[13px] text-[#74777f]">
-                  I agree to the{' '}
-                  <a href="#" className="text-[#006b5f] font-bold hover:underline">Terms of Service</a>
-                  {' '}and{' '}
-                  <a href="#" className="text-[#006b5f] font-bold hover:underline">Privacy Policy</a>
+                  {t('authAgreeTerms')}{' '}
+                  <a href="#" className="text-[#006b5f] font-bold hover:underline">{t('authTerms')}</a>
+                  {' '}{t('authAnd')}{' '}
+                  <a href="#" className="text-[#006b5f] font-bold hover:underline">{t('authPrivacy')}</a>
                 </p>
               </div>
 
@@ -231,15 +238,15 @@ export default function SignUpPage() {
                 className="w-full py-4 rounded-xl text-white font-['Sora'] text-[15px] font-semibold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ background:"linear-gradient(135deg,#006b5f,#002045)" }}
               >
-                Create {role === 'teacher' ? 'Teacher' : 'Student'} Account
+                {t('authSignUpBtn')} ({role === 'teacher' ? t('authTeacher') : t('authStudent')})
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
               </button>
             </form>
 
             {/* Already have account */}
             <p className="mt-6 text-center text-[13px] text-[#74777f]">
-              Already have an account?{' '}
-              <button onClick={() => router.push('/auth/login')} className="text-[#006b5f] font-bold hover:underline">Sign in</button>
+              {t('authAlreadyAccount')}{' '}
+              <button onClick={() => router.push('/auth/login')} className="text-[#006b5f] font-bold hover:underline">{t('authSignInLink')}</button>
             </p>
           </div>
 

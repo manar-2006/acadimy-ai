@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/context/LanguageContext";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap";
 
 export default function StudentDashboard() {
+  const { t } = useLanguage();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -103,10 +105,10 @@ export default function StudentDashboard() {
   const pendingAssignments = assignments.filter(a => !a.submitted);
 
   const statCards = [
-    { label: "GPA Score",      value: "3.8", meta: "+0.2 this semester", icon: "star",       accent: "#006b5f" },
-    { label: "Active Courses", value: String(courses.length), meta: courses.length > 0 ? "Real enrolled courses" : "None enrolled yet", icon: "school", accent: "#002045" },
-    { label: "Study Hours",    value: "24h", meta: "This week",          icon: "timer",      accent: "#09007b" },
-    { label: "Assignments",    value: String(pendingAssignments.length), meta: pendingAssignments.length > 0 ? "Awaiting submission" : "All caught up!", icon: "assignment", accent: "#ba1a1a" },
+    { label: t("gpaScore"),      value: "3.8", meta: "+0.2 this semester", icon: "star",       accent: "#006b5f" },
+    { label: t("activeCourses"), value: String(courses.length), meta: courses.length > 0 ? "Real enrolled courses" : "None enrolled yet", icon: "school", accent: "#002045" },
+    { label: t("studyHours"),    value: "24h", meta: "This week",          icon: "timer",      accent: "#09007b" },
+    { label: t("assignments"),    value: String(pendingAssignments.length), meta: pendingAssignments.length > 0 ? "Awaiting submission" : "All caught up!", icon: "assignment", accent: "#ba1a1a" },
   ];
 
   const upcomingTasks = pendingAssignments.slice(0, 3).map((a) => {
@@ -124,16 +126,16 @@ export default function StudentDashboard() {
   });
 
   const quickAccess = [
-    { icon: "picture_as_pdf", label: "PDF Analyzer",  color: "#ba1a1a", bg: "#fde8e8", href: "/student/smart-pdf-analyzer" },
-    { icon: "translate",      label: "Translator",    color: "#09007b", bg: "#e8e8ff", href: "/student/smart-translator" },
-    { icon: "calendar_month", label: "Study Planner", color: "#006b5f", bg: "#e0f5f2", href: "/student/study-planner" },
-    { icon: "work_history",   label: "Career Hub",    color: "#e65100", bg: "#fff3e0", href: "/student/career-center" },
-    { icon: "badge",          label: "Jobs",          color: "#c62784", bg: "#fde8f5", href: "/student/internships-jobs" },
-    { icon: "analytics",      label: "Performance",   color: "#002045", bg: "#e8eaf6", href: "/student/performance-analytics" },
-    { icon: "groups",         label: "Clubs",         color: "#3949ab", bg: "#e8eaf6", href: "/student/clubs-events" },
-    { icon: "workspace_premium", label: "Certificates", color: "#f9a825", bg: "#fffde7", href: "/student/certificates-center" },
-    { icon: "auto_stories",   label: "Ask AI",        color: "#006b5f", bg: "#e0f5f2", href: "/student/academic-assistant" },
-    { icon: "quiz",           label: "Flashcards",    color: "#002045", bg: "#f0f2f5", href: "/student/quiz-flashcards" },
+    { icon: "picture_as_pdf", label: t("pdfAnalyzer"),  color: "#ba1a1a", bg: "#fde8e8", href: "/student/smart-pdf-analyzer" },
+    { icon: "translate",      label: t("smartTranslator"),    color: "#09007b", bg: "#e8e8ff", href: "/student/smart-translator" },
+    { icon: "calendar_month", label: t("studyPlanner"), color: "#006b5f", bg: "#e0f5f2", href: "/student/study-planner" },
+    { icon: "work_history",   label: t("careerCenter"),    color: "#e65100", bg: "#fff3e0", href: "/student/career-center" },
+    { icon: "badge",          label: t("internshipsJobs"),          color: "#c62784", bg: "#fde8f5", href: "/student/internships-jobs" },
+    { icon: "analytics",      label: t("performance"),   color: "#002045", bg: "#e8eaf6", href: "/student/performance-analytics" },
+    { icon: "groups",         label: t("clubsEvents"),         color: "#3949ab", bg: "#e8eaf6", href: "/student/clubs-events" },
+    { icon: "workspace_premium", label: t("certificates"), color: "#f9a825", bg: "#fffde7", href: "/student/certificates-center" },
+    { icon: "auto_stories",   label: t("aiAssistant"),        color: "#006b5f", bg: "#e0f5f2", href: "/student/academic-assistant" },
+    { icon: "quiz",           label: t("quizFlashcards"),    color: "#002045", bg: "#f0f2f5", href: "/student/quiz-flashcards" },
   ];
 
   return (
@@ -157,8 +159,8 @@ export default function StudentDashboard() {
           <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,255,255,.5) 30px,rgba(255,255,255,.5) 31px)` }} />
           <div className="absolute top-0 right-0 w-80 h-80 rounded-full opacity-10" style={{ background: "radial-gradient(circle,#62fae3,transparent 70%)" }} />
           <div className="relative z-10 max-w-[1280px] mx-auto">
-            <p className="text-[#62fae3] text-[11px] font-bold tracking-widest uppercase mb-2">Student Portal</p>
-            <h1 className="text-white font-['Sora'] text-3xl md:text-4xl font-bold mb-2">Welcome Back{userName ? `, ${userName}` : ''} 👋</h1>
+            <p className="text-[#62fae3] text-[11px] font-bold tracking-widest uppercase mb-2">{t('studentHub')}</p>
+            <h1 className="text-white font-['Sora'] text-3xl md:text-4xl font-bold mb-2">{t('welcomeBack')}{userName ? `, ${userName}` : ''} 👋</h1>
             <p className="text-[#d6e3ff] text-[14px]">You've completed <span className="text-[#62fae3] font-bold">{completedPct}%</span> of today's tasks. Keep the momentum going!</p>
           </div>
         </div>
@@ -190,15 +192,15 @@ export default function StudentDashboard() {
               {/* Active Courses */}
               <section className="fade-up" style={{ animationDelay: ".05s" }}>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045]">Active Courses</h2>
+                  <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045]">{t('activeCourses')}</h2>
                   <Link href="/student/courses" className="flex items-center gap-1 text-[12px] font-semibold text-[#006b5f] hover:opacity-70 transition-opacity">
-                    View all <span className="material-symbols-outlined" style={{ fontSize: 15 }}>arrow_forward</span>
+                    {t('viewAll')} <span className="material-symbols-outlined" style={{ fontSize: 15 }}>arrow_forward</span>
                   </Link>
                 </div>
                 {loading ? (
                   <div className="bg-white rounded-2xl border border-[#e0e3e5] p-8 text-center">
                     <div className="w-8 h-8 border-4 border-[#006b5f] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-                    <p className="text-[13px] text-[#74777f]">Loading courses...</p>
+                    <p className="text-[13px] text-[#74777f]">{t('loading')}</p>
                   </div>
                 ) : courses.length === 0 ? (
                   <div className="bg-white rounded-2xl border border-[#e0e3e5] p-8 text-center">
@@ -216,14 +218,14 @@ export default function StudentDashboard() {
                         </div>
                         <h3 className="font-['Sora'] text-[14px] font-bold text-[#002045] mb-3">{course.name}</h3>
                         <div className="flex justify-between text-[11px] text-[#43474e] mb-1">
-                          <span>Progress</span>
+                          <span>{t('progress')}</span>
                           <span className="font-bold text-[#006b5f]">{course.progress || 65}%</span>
                         </div>
                         <div className="progress-bar-track mb-3">
                           <div className="progress-bar-fill" style={{ width: `${course.progress || 65}%`, background: course.color || "#002045" }} />
                         </div>
                         <Link href="/student/courses" className="flex items-center justify-center gap-1 w-full py-2 rounded-lg border border-[#e0e3e5] bg-[#f7f9fb] text-[11px] font-semibold text-[#43474e] hover:bg-[#e6e8ea] transition-colors">
-                          Enter Course <span className="material-symbols-outlined" style={{ fontSize: 13 }}>arrow_forward</span>
+                          {t('enterCourse')} <span className="material-symbols-outlined" style={{ fontSize: 13 }}>arrow_forward</span>
                         </Link>
                       </div>
                     ))}
@@ -233,7 +235,7 @@ export default function StudentDashboard() {
 
               {/* Quick Access */}
               <section className="fade-up" style={{ animationDelay: ".1s" }}>
-                <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045] mb-3">Quick Access</h2>
+                <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045] mb-3">{t('quickAccess')}</h2>
                 <div className="grid grid-cols-5 sm:grid-cols-10 gap-3">
                   {quickAccess.map((item) => (
                     <Link key={item.label} href={item.href} className="flex flex-col items-center gap-2 bg-white rounded-2xl border border-[#e0e3e5] p-3 text-center hover:shadow-md hover:border-[#c4c6cf] transition-all">
@@ -248,11 +250,11 @@ export default function StudentDashboard() {
 
               {/* Progress Tracker */}
               <section className="bg-white rounded-2xl border border-[#e0e3e5] shadow-sm p-5 fade-up" style={{ animationDelay: ".15s" }}>
-                <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045] mb-5">Progress Tracker</h2>
+                <h2 className="font-['Sora'] text-[16px] font-bold text-[#002045] mb-5">{t('progressTracker')}</h2>
                 <div className="flex items-center justify-around">
                   {[
-                    { label: "Course Completion", value: 75, color: "#006b5f", offset: 75.4 },
-                    { label: "Study Hours Target", value: 62, color: "#002045", offset: 114.6 },
+                    { label: t("courseCompletion"), value: 75, color: "#006b5f", offset: 75.4 },
+                    { label: t("studyHoursTarget"), value: 62, color: "#002045", offset: 114.6 },
                   ].map((ring) => (
                     <div key={ring.label} className="flex flex-col items-center gap-2">
                       <div className="relative h-28 w-28">
@@ -276,16 +278,16 @@ export default function StudentDashboard() {
               {/* Upcoming Tasks */}
               <section className="bg-white rounded-2xl border border-[#e0e3e5] shadow-sm p-4 fade-up" style={{ animationDelay: ".05s" }}>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="font-['Sora'] text-[14px] font-bold text-[#002045]">Upcoming Tasks</h2>
+                  <h2 className="font-['Sora'] text-[14px] font-bold text-[#002045]">{t('upcomingTasks')}</h2>
                   <Link href="/student/study-planner" className="flex items-center gap-1 text-[12px] font-semibold text-[#006b5f]">
-                    Planner <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
+                    {t('planner')} <span className="material-symbols-outlined" style={{ fontSize: 14 }}>arrow_forward</span>
                   </Link>
                 </div>
                 <div className="space-y-0">
                   {upcomingTasks.length === 0 ? (
                     <div className="py-6 text-center text-xs text-[#74777f]">
                       <span className="material-symbols-outlined text-2xl text-[#006b5f] mb-1">done_all</span>
-                      <p>All caught up! No pending assignments.</p>
+                      <p>{t('allCaughtUp')}</p>
                     </div>
                   ) : (
                     upcomingTasks.map((task) => (
@@ -311,12 +313,12 @@ export default function StudentDashboard() {
               <section className="rounded-2xl p-4 fade-up" style={{ animationDelay: ".1s", background: "linear-gradient(135deg,#002045,#006b5f)" }}>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="material-symbols-outlined text-[#62fae3] text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#62fae3]">AI Insight</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#62fae3]">{t('aiInsight')}</span>
                 </div>
                 <p className="text-[12px] leading-relaxed text-white/70 mb-4">Your performance in Machine Learning is exceptional. Focus 2 more hours on Data Structures this week.</p>
                 <Link href="/student/academic-assistant" className="flex items-center gap-2 rounded-lg bg-[#62fae3] px-4 py-2 text-[11px] font-bold text-[#002045] hover:opacity-90 transition-opacity">
                   <span className="material-symbols-outlined" style={{ fontSize: 15 }}>chat</span>
-                  Ask AI Assistant
+                  {t('askAiAssistant')}
                   <span className="material-symbols-outlined ml-auto" style={{ fontSize: 14 }}>arrow_forward</span>
                 </Link>
               </section>
@@ -324,8 +326,8 @@ export default function StudentDashboard() {
               {/* Today's Tasks */}
               <section className="bg-white rounded-2xl border border-[#e0e3e5] shadow-sm p-4 fade-up" style={{ animationDelay: ".15s" }}>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="font-['Sora'] text-[14px] font-bold text-[#002045]">Today's Tasks</h2>
-                  <span className="text-[11px] font-bold text-[#006b5f]">{completedPct}% Done</span>
+                  <h2 className="font-['Sora'] text-[14px] font-bold text-[#002045]">{t('todaysTasks')}</h2>
+                  <span className="text-[11px] font-bold text-[#006b5f]">{completedPct}%</span>
                 </div>
                 <ul className="space-y-3">
                   {tasks.map((task) => (
@@ -345,7 +347,7 @@ export default function StudentDashboard() {
                         type="text"
                         value={newTaskText}
                         onChange={e => setNewTaskText(e.target.value)}
-                        placeholder="New task name..."
+                        placeholder={t('newTaskPlaceholder')}
                         className="flex-1 px-3 py-2 rounded-lg border border-[#c4c6cf] text-[12px] outline-none focus:border-[#006b5f] focus:ring-1 focus:ring-[#006b5f]/20"
                       />
                       <button
@@ -353,14 +355,14 @@ export default function StudentDashboard() {
                         disabled={savingTask || !newTaskText.trim()}
                         className="px-3 py-2 bg-[#006b5f] text-white rounded-lg text-[12px] font-semibold hover:bg-[#005047] transition-colors disabled:opacity-50"
                       >
-                        {savingTask ? '...' : 'Add'}
+                        {savingTask ? '...' : t('add')}
                       </button>
                       <button
                         type="button"
                         onClick={() => { setAddingTask(false); setNewTaskText(''); }}
                         className="px-3 py-2 text-[#74777f] rounded-lg text-[12px] hover:bg-[#f0f2f4] transition-colors"
                       >
-                        Cancel
+                        {t('cancel')}
                       </button>
                     </div>
                   </form>
@@ -369,7 +371,7 @@ export default function StudentDashboard() {
                     onClick={() => setAddingTask(true)}
                     className="mt-4 w-full rounded-xl border border-dashed border-[#c4c6cf] py-2 text-[11px] font-semibold text-[#74777f] hover:bg-[#f0f2f4] hover:border-[#006b5f] hover:text-[#006b5f] transition-colors"
                   >
-                    + Add Task
+                    + {t('addTask')}
                   </button>
                 )}
               </section>

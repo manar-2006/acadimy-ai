@@ -3,8 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function StudentProfile() {
+  const { t } = useLanguage();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const [userProfile, setUserProfile] = useState({
@@ -377,17 +379,17 @@ export default function StudentProfile() {
                     className="px-6 py-2 bg-[#006b5f] text-[#ffffff] rounded-full text-[12px] font-semibold tracking-wider flex items-center gap-2 hover:bg-[#005047] transition-colors"
                   >
                     <span className="material-symbols-outlined text-lg">edit</span>
-                    Edit Profile
+                    {t('editProfileBtn')}
                   </button>
                   <button
                     onClick={() => setIsPasswordModalOpen(true)}
                     className="px-6 py-2 bg-[#1a365d] text-[#ffffff] rounded-full text-[12px] font-semibold tracking-wider flex items-center gap-2 hover:bg-[#112642] transition-colors"
                   >
                     <span className="material-symbols-outlined text-lg">lock</span>
-                    Change Password
+                    {t('changePasswordBtn')}
                   </button>
                   <button className="p-2 bg-white/20 backdrop-blur-md text-[#ffffff] rounded-full hover:bg-white/30 transition-colors">
-                    <span className="material-symbols-outlined">share</span>
+                    <span className="material-symbols-outlined">{t('share').toLowerCase()}</span>
                   </button>
                 </div>
               </div>
@@ -403,22 +405,22 @@ export default function StudentProfile() {
               <div className="bg-[#ffffff] p-[24px] rounded-xl border border-[#c4c6cf] shadow-sm transition-all hover:shadow-md">
                 <h3 className="font-sora text-xl text-[#002045] mb-[24px] flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#006b5f]">info</span>
-                  Academic Status
+                  {t('academicStatus')}
                 </h3>
                 <div className="space-y-4">
                   <div className="flex flex-col">
-                    <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">Institution</span>
+                    <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">{t('institution')}</span>
                     <span className="text-base text-[#191c1e]">{userProfile.school}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-[12px]">
                     <div className="flex flex-col">
-                      <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">Year</span>
+                      <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">{t('year')}</span>
                       <span className="text-base text-[#191c1e]">{userProfile.year}</span>
                     </div>
 
                   </div>
                   <div className="flex flex-col pt-2 border-t border-[#c4c6cf]">
-                    <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">Major</span>
+                    <span className="text-[12px] font-semibold tracking-wider text-[#74777f] uppercase">{t('major')}</span>
                     <span className="text-base text-[#191c1e]">{userProfile.major}</span>
                   </div>
 
@@ -429,7 +431,7 @@ export default function StudentProfile() {
               <div className="bg-[#ffffff] p-[24px] rounded-xl border border-[#c4c6cf] shadow-sm">
                 <h3 className="font-sora text-xl text-[#002045] mb-[24px] flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#006b5f]">psychology</span>
-                  Skill Set
+                  {t('skillSet')}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (

@@ -3,10 +3,13 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function EduSphereLanding() {
   const heroCardRef = useRef(null);
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const card = heroCardRef.current;
@@ -43,16 +46,17 @@ export default function EduSphereLanding() {
               </a>
               <div className="hidden space-x-6 md:flex">
                 <a className="font-label-md border-b-2 border-secondary font-bold text-secondary transition-all" href="#">
-                  Home
+                  {t('landingHome')}
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher variant="light" />
               <button onClick={() => router.push('/auth/login')} className="font-label-md hidden px-4 py-2 text-primary transition-all hover:opacity-80 sm:block">
-                Sign In
+                {t('landingSignIn')}
               </button>
               <button onClick={() => router.push('/auth/signup')} className="font-label-md rounded-lg bg-primary px-6 py-2.5 text-on-primary shadow-sm transition-all hover:opacity-90">
-                Get Started
+                {t('landingGetStarted')}
               </button>
             </div>
           </nav>
@@ -70,24 +74,26 @@ export default function EduSphereLanding() {
               <div className="z-10">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5" style={{ background:"rgba(98,250,227,0.15)", border:"1px solid rgba(98,250,227,0.25)" }}>
                   <span className="w-2 h-2 rounded-full bg-[#62fae3] animate-pulse" />
-                  <span className="text-[#62fae3] text-[11px] font-bold tracking-widest uppercase">Next-Gen Academic Intelligence</span>
+                  <span className="text-[#62fae3] text-[11px] font-bold tracking-widest uppercase">{t('landingHeroBadge')}</span>
                 </div>
                 <h1 className="font-headline-xl mb-6 leading-tight text-white">
-                  Your Intelligent University{" "}
-                  <span style={{ background:"linear-gradient(90deg,#62fae3,#3cddc7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Companion</span>
+                  {t('landingHeroTitle').split(' ').slice(0,3).join(' ')}{" "}
+                  <span style={{ background:"linear-gradient(90deg,#62fae3,#3cddc7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+                    {t('landingHeroTitle').split(' ').slice(3).join(' ')}
+                  </span>
                 </h1>
                 <p className="font-body-lg mb-10 max-w-lg text-[#d6e3ff]">
-                  Navigate your academic journey with AI-powered study schedules, instant lecture summaries, and career pathing designed specifically for higher education.
+                  {t('landingHeroSubtitle')}
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <button onClick={() => router.push('/auth/signup')}
                     className="rounded-xl px-8 py-4 font-bold text-[#002045] shadow-lg transition-all hover:scale-[1.02] active:scale-95"
                     style={{ background:"linear-gradient(135deg,#62fae3,#3cddc7)" }}>
-                    Get Started for Free
+                    {t('landingHeroCta')}
                   </button>
                   <button onClick={() => router.push('/auth/login')}
                     className="rounded-xl px-8 py-4 font-bold text-white border border-white/30 backdrop-blur-sm hover:bg-white/10 transition-all">
-                    Sign In
+                    {t('landingSignIn')}
                   </button>
                 </div>
                 <div className="mt-8 flex items-center gap-4">
@@ -142,10 +148,10 @@ export default function EduSphereLanding() {
             <div className="mx-auto max-w-[1280px] px-6">
               <div className="mb-16 text-center">
                 <h2 className="font-headline-lg mb-4 text-primary">
-                  Empowering Every Aspect of Campus Life
+                  {t('landingFeaturesTitle')}
                 </h2>
                 <p className="font-body-md mx-auto max-w-2xl text-on-surface-variant">
-                  Our platform bridges the gap between traditional study methods and the future of AI-assisted learning.
+                  {t('landingFeaturesSubtitle')}
                 </p>
               </div>
               <div className="grid gap-8 md:grid-cols-3">
@@ -215,6 +221,20 @@ export default function EduSphereLanding() {
             </div>
           </section>
 
+          {/* CTA Banner */}
+          <section className="py-24 bg-surface-container-low">
+            <div className="mx-auto max-w-[1280px] px-6 text-center">
+              <h2 className="font-headline-lg mb-4 text-primary">{t('landingCtaTitle')}</h2>
+              <p className="font-body-md mb-10 text-on-surface-variant max-w-xl mx-auto">{t('landingCtaSubtitle')}</p>
+              <button
+                onClick={() => router.push('/auth/signup')}
+                className="rounded-xl px-10 py-4 font-bold text-on-primary shadow-lg transition-all hover:scale-[1.02] active:scale-95 bg-primary text-lg"
+              >
+                {t('landingCtaBtn')}
+              </button>
+            </div>
+          </section>
+
           {/* Testimonials */}
           <section className="py-24">
             <div className="mx-auto max-w-[1280px] px-6">
@@ -226,7 +246,7 @@ export default function EduSphereLanding() {
                 <div className="relative bg-surface-container p-8 rounded-2xl">
                   <span className="material-symbols-outlined absolute top-6 right-8 text-primary/10 text-[64px]">format_quote</span>
                   <p className="font-body-md relative z-10 mb-8 italic text-on-surface">
-                    "EduSphere has completely changed how I prepare for my finals. The AI summaries capture nuance that I often miss during long lectures."
+                    &quot;EduSphere has completely changed how I prepare for my finals. The AI summaries capture nuance that I often miss during long lectures.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full border border-outline">
@@ -242,7 +262,7 @@ export default function EduSphereLanding() {
                 <div className="relative bg-surface-container p-8 rounded-2xl">
                   <span className="material-symbols-outlined absolute top-6 right-8 text-primary/10 text-[64px]">format_quote</span>
                   <p className="font-body-md relative z-10 mb-8 italic text-on-surface">
-                    "The Career Roadmap feature helped me land an internship at a top tech firm by suggesting the exact certifications I needed based on my major."
+                    &quot;The Career Roadmap feature helped me land an internship at a top tech firm by suggesting the exact certifications I needed based on my major.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full border border-outline">
@@ -258,7 +278,7 @@ export default function EduSphereLanding() {
                 <div className="relative bg-surface-container p-8 rounded-2xl">
                   <span className="material-symbols-outlined absolute top-6 right-8 text-primary/10 text-[64px]">format_quote</span>
                   <p className="font-body-md relative z-10 mb-8 italic text-on-surface">
-                    "Managing three labs and a part-time job was impossible before the AI Study Planner. It literally saved my GPA this semester."
+                    &quot;Managing three labs and a part-time job was impossible before the AI Study Planner. It literally saved my GPA this semester.&quot;
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="relative h-12 w-12 overflow-hidden rounded-full border border-outline">
@@ -273,81 +293,6 @@ export default function EduSphereLanding() {
               </div>
             </div>
           </section>
-
-          {/* Pricing */}
-          {/* <section className="bg-[#e6e8ea]/50 py-24">
-            <div className="mx-auto max-w-[1280px] px-6">
-              <div className="mb-16 text-center">
-                <h2 className="font-headline-lg mb-4 text-primary">Straightforward Academic Pricing</h2>
-                <p className="font-body-md text-on-surface-variant">Choose the plan that fits your study needs.</p>
-              </div>
-              <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-                 Basic Plan
-                <div className="border border-outline-variant bg-surface-container-lowest p-10 rounded-2xl shadow-sm flex flex-col h-full">
-                  <div className="mb-8">
-                    <h3 className="font-headline-md mb-2 text-primary">Basic</h3>
-                    <div className="mb-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-primary">$0</span>
-                      <span className="text-on-surface-variant">/month</span>
-                    </div>
-                    <p className="font-body-sm text-on-surface-variant">Perfect for trying out AI-powered learning.</p>
-                  </div>
-                  <ul className="mb-10 space-y-4 flex-grow">
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">3 Course Summaries per month</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Standard AI Assistant</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Basic Study Planner</span>
-                    </li>
-                  </ul>
-                  <button className="font-label-md w-full border-2 border-primary py-4 rounded-xl text-primary transition-colors hover:bg-surface-container-low">
-                    Start for Free
-                  </button>
-                </div>
-               
-                <div className="border-2 border-secondary bg-surface-container-lowest p-10 rounded-2xl shadow-xl flex flex-col h-full relative overflow-hidden">
-                  <div className="absolute top-0 right-0 bg-secondary px-6 py-1.5 rounded-bl-xl text-[10px] font-bold font-label-md tracking-widest uppercase text-on-secondary">
-                    Recommended
-                  </div>
-                  <div className="mb-8">
-                    <h3 className="font-headline-md mb-2 text-primary">Pro</h3>
-                    <div className="mb-4 flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-primary">$12</span>
-                      <span className="text-on-surface-variant">/month</span>
-                    </div>
-                    <p className="font-body-sm text-on-surface-variant">For serious students aiming for the top.</p>
-                  </div>
-                  <ul className="mb-10 space-y-4 flex-grow">
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Unlimited Course Summaries</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Priority GPT-4o Assistant</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Full Career Roadmap & Guidance</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-on-surface">
-                      <span className="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
-                      <span className="font-body-sm">Collaboration Tools for Groups</span>
-                    </li>
-                  </ul>
-                  <button className="font-label-md w-full bg-primary py-4 rounded-xl text-on-primary shadow-md transition-all hover:opacity-90">
-                    Go Pro Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section> */}
         </main>
 
         {/* Footer */}

@@ -3,9 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function ForgotPasswordPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [step, setStep] = useState(1); // 1: Email, 2: Verification Code & New Password, 3: Success
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -138,14 +141,18 @@ export default function ForgotPasswordPage() {
             <span className="text-[#002045] font-['Sora'] text-[16px] font-bold">EduSphere AI</span>
           </div>
 
+          <div className="absolute top-6 right-6">
+            <LanguageSwitcher variant="light" />
+          </div>
+
           <div className="w-full max-w-[400px] fade-in">
             {/* Header */}
             <div className="mb-8">
-              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">Reset Password</h2>
+              <h2 className="font-['Sora'] text-[28px] font-bold text-[#002045] mb-2">{t('authForgotTitle')}</h2>
               <p className="text-[#74777f] text-[14px]">
-                {step === 1 && "Enter your university email to receive a password reset verification code."}
-                {step === 2 && "Enter the verification code and set a new password."}
-                {step === 3 && "Password updated successfully!"}
+                {step === 1 && t('authForgotSubtitle')}
+                {step === 2 && t('authForgotEnterCode')}
+                {step === 3 && t('authForgotSuccess')}
               </p>
             </div>
 
@@ -170,7 +177,7 @@ export default function ForgotPasswordPage() {
             {step === 1 && (
               <form onSubmit={handleSendCode} className="space-y-6">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">University Email</label>
+                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="email">{t('authEmail')}</label>
                   <div className="relative group">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'email' ? '#006b5f' : '#c4c6cf' }}>mail</span>
                     <input
@@ -197,11 +204,11 @@ export default function ForgotPasswordPage() {
                   {loading ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending Code…
+                      {t('authSending')}
                     </>
                   ) : (
                     <>
-                      Send Verification Code
+                      {t('authSendCode')}
                       <span className="material-symbols-outlined text-[18px]">send</span>
                     </>
                   )}
@@ -213,7 +220,7 @@ export default function ForgotPasswordPage() {
             {step === 2 && (
               <form onSubmit={handleResetPassword} className="space-y-5">
                 <div>
-                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="code">Verification Code</label>
+                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="code">{t('authForgotEnterCodeLabel')}</label>
                   <div className="relative group">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'code' ? '#006b5f' : '#c4c6cf' }}>pin</span>
                     <input
@@ -221,7 +228,7 @@ export default function ForgotPasswordPage() {
                       type="text"
                       required
                       maxLength={6}
-                      placeholder="Enter 6-digit code"
+                      placeholder={t('authForgotEnterCodePlaceholder')}
                       value={code}
                       onChange={e => setCode(e.target.value)}
                       onFocus={() => setFocused('code')}
@@ -233,7 +240,7 @@ export default function ForgotPasswordPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="newPassword">New Password</label>
+                  <label className="block text-[11px] font-bold text-[#43474e] uppercase tracking-wider mb-2" htmlFor="newPassword">{t('authPassword')}</label>
                   <div className="relative group">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[20px] transition-colors" style={{ color: focused === 'newPassword' ? '#006b5f' : '#c4c6cf' }}>lock</span>
                     <input
@@ -267,11 +274,11 @@ export default function ForgotPasswordPage() {
                   {loading ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Resetting Password…
+                      {t('authResetting')}
                     </>
                   ) : (
                     <>
-                      Reset Password
+                      {t('authForgotTitle')}
                       <span className="material-symbols-outlined text-[18px]">lock_reset</span>
                     </>
                   )}
@@ -285,14 +292,14 @@ export default function ForgotPasswordPage() {
                 <div className="w-20 h-20 rounded-full bg-[#d1fae5] text-[#006b5f] flex items-center justify-center mx-auto shadow-md">
                   <span className="material-symbols-outlined text-[48px]" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
                 </div>
-                <h3 className="font-sora text-xl font-bold text-[#002045]">All Set!</h3>
-                <p className="text-sm text-[#74777f]">Your password has been successfully reset. You can now log in using your new password.</p>
+                <h3 className="font-sora text-xl font-bold text-[#002045]">{t('authForgotSuccessTitle')}</h3>
+                <p className="text-sm text-[#74777f]">{t('authForgotSuccessDesc')}</p>
                 <button
                   onClick={() => router.push("/auth/login")}
                   className="w-full py-4 rounded-xl text-white font-['Sora'] text-[15px] font-semibold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg"
                   style={{ background: "linear-gradient(135deg,#002045,#006b5f)" }}
                 >
-                  Back to Sign In
+                  {t('authBackToLogin')}
                   <span className="material-symbols-outlined text-[18px]">login</span>
                 </button>
               </div>
@@ -301,9 +308,9 @@ export default function ForgotPasswordPage() {
             {/* Footer Back link */}
             {step !== 3 && (
               <p className="text-center text-[13px] text-[#74777f] mt-8">
-                Remember your password?{" "}
+                {t('authForgotRemember')}{" "}
                 <Link href="/auth/login" className="text-[#006b5f] font-semibold hover:underline">
-                  Sign In
+                  {t('authSignInLink')}
                 </Link>
               </p>
             )}

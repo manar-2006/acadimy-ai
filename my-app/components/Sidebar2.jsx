@@ -3,10 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 
-export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
+export default function Sidebar2({ mobileNavOpen, setMobileNavOpen }) {
     const pathname = usePathname();
     const router = useRouter();
+    const { t } = useLanguage();
 
     const handleLogout = () => {
         localStorage.removeItem('user');
@@ -15,12 +17,12 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
     };
 
     const navItems = [
-        { icon: "admin_panel_settings", label: "Instructor Hub",     path: "/teacher/instructor-dashboard" },
-        { icon: "smart_toy",            label: "Ask AI",             path: "/teacher/ask-ai" },
-        { icon: "query_stats",          label: "Student Analytics",  path: "/teacher/student-analytics" },
-        { icon: "add_box",             label: "Course Management",   path: "/teacher/course-management" },
-        { icon: "bar_chart",           label: "Performance",         path: "/teacher/performance-analytics" },
-        { icon: "notifications",       label: "Notifications",       path: "/teacher/notifications", badge: true },
+        { icon: "admin_panel_settings", labelKey: "instructorHub",    path: "/teacher/instructor-dashboard" },
+        { icon: "smart_toy",            labelKey: "askAI",            path: "/teacher/ask-ai" },
+        { icon: "query_stats",          labelKey: "studentAnalytics", path: "/teacher/student-analytics" },
+        { icon: "add_box",              labelKey: "courseManagement", path: "/teacher/course-management" },
+        { icon: "bar_chart",            labelKey: "performance",      path: "/teacher/performance-analytics" },
+        { icon: "notifications",        labelKey: "notifications",    path: "/teacher/notifications", badge: true },
     ];
 
     return (
@@ -45,7 +47,7 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
                     </div>
                     <div>
                         <h1 className="font-sora text-[20px] font-bold text-primary leading-tight">EduSphere AI</h1>
-                        <p className="font-label-md text-[11px] text-on-surface-variant opacity-75">Instructor Hub</p>
+                        <p className="font-label-md text-[11px] text-on-surface-variant opacity-75">{t('instructorHub')}</p>
                     </div>
                 </div>
 
@@ -66,7 +68,7 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
                                 <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>
                                     {item.icon}
                                 </span>
-                                <span className="flex-1">{item.label}</span>
+                                <span className="flex-1">{t(item.labelKey)}</span>
                                 {item.badge && (
                                     <span className="w-2 h-2 rounded-full bg-[#ba1a1a] shrink-0"></span>
                                 )}
@@ -86,14 +88,14 @@ export default function Sidebar({ mobileNavOpen, setMobileNavOpen }) {
                         <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: pathname === "/teacher/teacher-profile" ? "'FILL' 1" : "'FILL' 0" }}>
                             account_circle
                         </span>
-                        My Profile
+                        {t('teacherProfile')}
                     </Link>
                     <button
                         onClick={() => { setMobileNavOpen(false); handleLogout(); }}
                         className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all text-[13px] font-medium border-none bg-transparent cursor-pointer"
                     >
                         <span className="material-symbols-outlined text-[20px]">logout</span>
-                        Logout
+                        {t('logout')}
                     </button>
                 </div>
             </aside>
