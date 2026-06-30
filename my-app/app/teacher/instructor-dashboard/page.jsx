@@ -14,13 +14,20 @@ export default function InstructorDashboard() {
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimateProgress(true), 300);
+    let userTimer;
     if (typeof window !== "undefined") {
       const storedUser = localStorage.getItem("user");
       if (storedUser) {
-        try { setUser(JSON.parse(storedUser)); } catch (e) {}
+        try {
+          const parsed = JSON.parse(storedUser);
+          userTimer = setTimeout(() => setUser(parsed), 0);
+        } catch (e) {}
       }
     }
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (userTimer) clearTimeout(userTimer);
+    };
   }, []);
 
   const [stats, setStats] = useState([

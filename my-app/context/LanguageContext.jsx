@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { domTranslations } from './domTranslations';
 
 const LanguageContext = createContext();
 
@@ -523,31 +524,215 @@ const translations = {
   }
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Pre-build lookup structures once at module load time so translateDOM is fast.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Build a reverse map:  translated-string → english-key
+ * This lets us normalise the DOM back to English before translating to any lang.
+ */
+function buildReverseMaps() {
+  const frToEn = new Map();
+  const arToEn = new Map();
+  for (const [key, val] of Object.entries(domTranslations)) {
+    if (val.fr) frToEn.set(val.fr, key);
+    if (val.ar) arToEn.set(val.ar, key);
+  }
+  return { frToEn, arToEn };
+}
+
+const { frToEn, arToEn } = buildReverseMaps();
+
+/**
+ * Keys sorted by descending length so longer phrases are matched first.
+ * This prevents partial sub-phrase matches from firing before full-phrase ones.
+ */
+const SORTED_KEYS = Object.keys(domTranslations).sort((a, b) => b.length - a.length);
+
+/**
+ * Normalise any string back to its canonical English form, then translate to
+ * the requested target language.
+ */
+function translateString(raw, targetLang) {
+  const str = raw.trim();
+  if (!str || str.length < 2) return raw;
+
+  // 1. Direct exact-match (after normalisation)
+  let enKey = null;
+  if (domTranslations[str]) {
+    enKey = str;
+  } else if (frToEn.has(str)) {
+    enKey = frToEn.get(str);
+  } else if (arToEn.has(str)) {
+    enKey = arToEn.get(str);
+  }
+
+  if (enKey) {
+    if (targetLang === 'en') return enKey;
+    return domTranslations[enKey][targetLang] || enKey;
+  }
+
+  // 2. Substring substitution (handles mixed / partial strings)
+  let result = raw;
+  for (const key of SORTED_KEYS) {
+    if (key.length < 4) continue; // Skip very short keys to avoid noise
+    const entry = domTranslations[key];
+
+    // Try to replace the English phrase
+    if (result.includes(key)) {
+      const replacement = targetLang === 'en' ? key : (entry[targetLang] || key);
+      if (replacement !== key) {
+        result = result.split(key).join(replacement);
+      }
+    }
+
+    // Try to replace an already-translated French phrase
+    if (entry.fr && result.includes(entry.fr)) {
+      const replacement = targetLang === 'en' ? key : (entry[targetLang] || key);
+      if (replacement !== entry.fr) {
+        result = result.split(entry.fr).join(replacement);
+      }
+    }
+
+    // Try to replace an already-translated Arabic phrase
+    if (entry.ar && result.includes(entry.ar)) {
+      const replacement = targetLang === 'en' ? key : (entry[targetLang] || key);
+      if (replacement !== entry.ar) {
+        result = result.split(entry.ar).join(replacement);
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * Walk the entire live DOM and apply translations to:
+ *  • Text nodes (skipping script / style / textarea / noscript parents)
+ *  • input / textarea [placeholder] attributes
+ *  • img / Image [alt] attributes
+ *  • [title] attributes on interactive elements
+ */
+function translateDOM(targetLang) {
+  if (typeof window === 'undefined' || !document.body) return;
+
+  // ── Text nodes ──────────────────────────────────────────────────────────
+  const SKIP_TAGS = new Set(['script', 'style', 'textarea', 'noscript', 'code', 'pre']);
+
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        const tag = node.parentNode?.tagName?.toLowerCase();
+        if (SKIP_TAGS.has(tag)) return NodeFilter.FILTER_REJECT;
+        if (!node.nodeValue?.trim()) return NodeFilter.FILTER_SKIP;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  // Collect first, then mutate (avoids walker invalidation)
+  const textNodes = [];
+  let cur;
+  while ((cur = walker.nextNode())) textNodes.push(cur);
+
+  for (const node of textNodes) {
+    const orig = node.nodeValue;
+    const next = translateString(orig, targetLang);
+    if (next !== orig) node.nodeValue = next;
+  }
+
+  // ── Placeholder attributes ───────────────────────────────────────────────
+  document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+    const ph = el.getAttribute('placeholder');
+    if (!ph) return;
+    const next = translateString(ph, targetLang);
+    if (next !== ph) el.setAttribute('placeholder', next);
+  });
+
+  // ── Alt attributes ───────────────────────────────────────────────────────
+  document.querySelectorAll('[alt]').forEach(el => {
+    const alt = el.getAttribute('alt');
+    if (!alt) return;
+    const next = translateString(alt, targetLang);
+    if (next !== alt) el.setAttribute('alt', next);
+  });
+
+  // ── Title attributes ─────────────────────────────────────────────────────
+  document.querySelectorAll('[title]').forEach(el => {
+    const title = el.getAttribute('title');
+    if (!title) return;
+    const next = translateString(title, targetLang);
+    if (next !== title) el.setAttribute('title', next);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LanguageProvider
+// ─────────────────────────────────────────────────────────────────────────────
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('en');
 
+  // Restore persisted language on first mount
   useEffect(() => {
-    const storedLang = localStorage.getItem('language');
-    if (storedLang && ['en', 'fr', 'ar'].includes(storedLang)) {
-      setLanguage(storedLang);
-      document.documentElement.dir = storedLang === 'ar' ? 'rtl' : 'ltr';
+    if (typeof window === 'undefined') return;
+    let timer;
+    const stored = localStorage.getItem('language');
+    if (stored && ['en', 'fr', 'ar'].includes(stored)) {
+      document.documentElement.dir = stored === 'ar' ? 'rtl' : 'ltr';
+      timer = setTimeout(() => setLanguage(stored), 0);
     }
+    return () => { if (timer) clearTimeout(timer); };
   }, []);
 
+  // Translate DOM whenever language changes and watch for new DOM nodes
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Translate immediately after React re-renders flush
+    const initial = setTimeout(() => translateDOM(language), 50);
+
+    // Debounced MutationObserver — translates newly-rendered content
+    let debounce;
+    const OBS_CONFIG = { childList: true, subtree: true };
+    const observer = new MutationObserver(() => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        observer.disconnect();
+        translateDOM(language);
+        observer.observe(document.body, OBS_CONFIG);
+      }, 80);
+    });
+
+    observer.observe(document.body, OBS_CONFIG);
+
+    // Also react to the custom 'languagechange' event fired by changeLanguage()
+    const onLangChange = () => translateDOM(language);
+    window.addEventListener('languagechange', onLangChange);
+
+    return () => {
+      clearTimeout(initial);
+      clearTimeout(debounce);
+      observer.disconnect();
+      window.removeEventListener('languagechange', onLangChange);
+    };
+  }, [language]);
+
   const changeLanguage = (lang) => {
-    if (['en', 'fr', 'ar'].includes(lang)) {
-      setLanguage(lang);
-      localStorage.setItem('language', lang);
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      
-      // Dispatch custom event to notify all components
+    if (!['en', 'fr', 'ar'].includes(lang)) return;
+    localStorage.setItem('language', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    setLanguage(lang);
+    // Immediate DOM pass before React re-renders
+    setTimeout(() => {
+      translateDOM(lang);
       window.dispatchEvent(new Event('languagechange'));
-    }
+    }, 0);
   };
 
-  const t = (key) => {
-    return translations[language]?.[key] || translations['en']?.[key] || key;
-  };
+  const t = (key) =>
+    translations[language]?.[key] ?? translations['en']?.[key] ?? key;
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage, t }}>

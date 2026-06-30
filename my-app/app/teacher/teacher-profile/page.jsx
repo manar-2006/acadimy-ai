@@ -29,6 +29,7 @@ export default function TeacherProfile() {
   const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
+    let timer;
     if (typeof window !== 'undefined') {
       const storedUser = window.localStorage.getItem('user');
       if (storedUser) {
@@ -45,13 +46,18 @@ export default function TeacherProfile() {
             specializations: parsed.specializations || ['Machine Learning', 'Neural Networks'],
             role: parsed.role || 'teacher',
           };
-          setUser(merged);
-          setEditState(merged);
+          timer = setTimeout(() => {
+            setUser(merged);
+            setEditState(merged);
+          }, 0);
         } catch (e) {
           console.error('Error parsing stored user:', e);
         }
       }
     }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const stats = [

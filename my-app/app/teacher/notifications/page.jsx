@@ -186,7 +186,10 @@ export default function TeacherNotifications() {
   };
 
   useEffect(() => {
-    loadNotifications();
+    const timer = setTimeout(() => {
+      loadNotifications();
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const unreadCount = notifications.filter(n => !n.isRead).length;

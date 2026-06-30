@@ -444,7 +444,7 @@
       "id": "1782728819662",
       "createdAt": "2026-06-29T10:26:59.662Z",
       "email": "manarnadji06@gmail.com",
-      "passwordHash": "$2a$10$a1utRZVom8UQc0g9dPB0xO5XJlDJjwiJkgXE2Oa9lHwb.1KVgV2pC",
+      "passwordHash": "$2a$10$s8HsAjv0W1AVe/8Bxt6ACOMww3675EBBqErAeyotADJpqEYDPq5je",
       "fullName": "manar nadji",
       "school": "estin_bejaia",
       "year": "3",
@@ -458,7 +458,7 @@
         "Data Science",
         "AI Ethics"
       ],
-      "updatedAt": "2026-06-29T19:38:06.458Z"
+      "updatedAt": "2026-06-30T15:37:38.434Z"
     },
     {
       "id": "1782750129311",
@@ -517,6 +517,19 @@
       "school": "imperial",
       "year": "Associate Professor",
       "major": "sfbg",
+      "role": "teacher",
+      "bio": "",
+      "specializations": []
+    },
+    {
+      "id": "1782842495395",
+      "createdAt": "2026-06-30T18:01:35.395Z",
+      "email": "manarnadji006@gmail.com",
+      "passwordHash": "$2a$10$5w/F3sL6ChtZgu1amUQYd.R1FxT5iCvgbdWB8.Dfw11/eTebG3XOa",
+      "fullName": "منار",
+      "school": "estin_bejaia",
+      "year": "Professor",
+      "major": "اعلام",
       "role": "teacher",
       "bio": "",
       "specializations": []
@@ -638,6 +651,109 @@
     }
   ],
   "notifications": [
+    {
+      "id": "1782842495747",
+      "read": false,
+      "createdAt": "2026-06-30T18:01:35.747Z",
+      "userId": "1782842495395",
+      "title": "Grading Deadline: ML Project",
+      "message": "14 ML Project submissions in CS-520 are pending your grade. The grading deadline is tomorrow at 5:00 PM. Students are waiting for feedback.",
+      "type": "courses",
+      "priority": "high",
+      "icon": "rate_review",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "Start Grading",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782842495741",
+      "read": false,
+      "createdAt": "2026-06-30T18:01:35.741Z",
+      "userId": "1782842495395",
+      "title": "AI Insight: Engagement Drop Detected",
+      "message": "CS-402 has shown a 15% drop in participation over the past two weeks. EduSphere AI suggests generating a review session or interactive quiz to re-engage students.",
+      "type": "ai",
+      "priority": "normal",
+      "icon": "auto_awesome",
+      "iconColor": "#006b5f",
+      "iconBg": "#62fae3",
+      "actions": [
+        {
+          "label": "Generate Quiz",
+          "primary": true
+        },
+        {
+          "label": "View Analytics",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": "1782842495733",
+      "read": false,
+      "createdAt": "2026-06-30T18:01:35.734Z",
+      "userId": "1782842495395",
+      "title": "3 New Forum Questions",
+      "message": "Students in CS-520 (Machine Learning) have posted 3 unanswered questions in the discussion board. Topics include gradient descent and vanishing gradients.",
+      "type": "courses",
+      "priority": "normal",
+      "icon": "forum",
+      "iconColor": "#09007b",
+      "iconBg": "#e1e0ff",
+      "actions": [
+        {
+          "label": "Open Forum",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782842495726",
+      "read": false,
+      "createdAt": "2026-06-30T18:01:35.726Z",
+      "userId": "1782842495395",
+      "title": "New Assignment Submission",
+      "message": "Alex Chen submitted OS Assignment 4 — \"Thread Scheduling Algorithms\" in CS-402. Awaiting your review and grading.",
+      "type": "students",
+      "priority": "normal",
+      "icon": "assignment_turned_in",
+      "iconColor": "#006b5f",
+      "iconBg": "#d1fae5",
+      "actions": [
+        {
+          "label": "Grade Now",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": "1782842495717",
+      "read": false,
+      "createdAt": "2026-06-30T18:01:35.717Z",
+      "userId": "1782842495395",
+      "title": "⚠️ At-Risk Student Alert",
+      "message": "Jordan Smith (CS-402) has missed 3 consecutive lab sessions and their quiz average has dropped to 45%. Immediate intervention is recommended.",
+      "type": "students",
+      "priority": "high",
+      "icon": "warning",
+      "iconColor": "#ba1a1a",
+      "iconBg": "#ffdad6",
+      "actions": [
+        {
+          "label": "View Student",
+          "primary": true
+        },
+        {
+          "label": "Send Message",
+          "primary": false
+        }
+      ]
+    },
     {
       "id": "1782761775082",
       "read": false,

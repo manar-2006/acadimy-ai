@@ -185,9 +185,14 @@ export default function InstructorCourseManagement() {
   };
 
   useEffect(() => {
-    loadCourses();
+    const fetchTimer = setTimeout(() => {
+      loadCourses();
+    }, 0);
     const timer = setTimeout(() => setAnimateProgress(true), 150);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(fetchTimer);
+      clearTimeout(timer);
+    };
   }, []);
 
   const resetModal = () => {

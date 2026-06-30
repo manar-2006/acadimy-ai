@@ -33,7 +33,9 @@ export default function StudentDashboard() {
       try {
         const u = JSON.parse(stored);
         const first = (u.fullName || '').split(' ')[0];
-        if (first) setUserName(first);
+        if (first) {
+          setTimeout(() => setUserName(first), 0);
+        }
       } catch (e) {}
     }
 

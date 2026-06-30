@@ -11,32 +11,34 @@ export default function Navbar({ setMobileNavOpen, title = "EduSphere AI" }) {
   const [askAiRoute, setAskAiRoute] = useState('/student/academic-assistant');
   const [notificationsRoute, setNotificationsRoute] = useState('/student/notifications-center');
   const [initials, setInitials] = useState('A');
-  const [currentRole, setCurrentRole] = useState('student');
 
   useEffect(() => {
+    let timer;
     if (typeof window !== 'undefined') {
       const stored = window.localStorage.getItem('user');
       if (stored) {
         try {
           const user = JSON.parse(stored);
-          if (user.role === 'teacher') {
-            setProfileRoute('/teacher/teacher-profile');
-            setAskAiRoute('/teacher/ask-ai');
-            setNotificationsRoute('/teacher/notifications');
-          }
-          if (user.role) {
-            setCurrentRole(user.role);
-          }
-          if (user.fullName) {
-            const parts = user.fullName.trim().split(' ');
-            const init = parts.map(p => p[0]).slice(0, 2).join('').toUpperCase();
-            if (init) setInitials(init);
-          } else if (user.email) {
-            setInitials(user.email[0].toUpperCase());
-          }
+          timer = setTimeout(() => {
+            if (user.role === 'teacher') {
+              setProfileRoute('/teacher/teacher-profile');
+              setAskAiRoute('/teacher/ask-ai');
+              setNotificationsRoute('/teacher/notifications');
+            }
+            if (user.fullName) {
+              const parts = user.fullName.trim().split(' ');
+              const init = parts.map(p => p[0]).slice(0, 2).join('').toUpperCase();
+              if (init) setInitials(init);
+            } else if (user.email) {
+              setInitials(user.email[0].toUpperCase());
+            }
+          }, 0);
         } catch (e) { }
       }
     }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const getTranslatedTitle = (originalTitle) => {

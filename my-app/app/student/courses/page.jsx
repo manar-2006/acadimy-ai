@@ -141,7 +141,10 @@ export default function EduSphereCourses() {
   };
 
   useEffect(() => {
-    fetchData();
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleEnroll = async (courseId) => {
